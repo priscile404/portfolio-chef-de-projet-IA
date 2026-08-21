@@ -133,11 +133,8 @@ export interface SiteContent {
   /** Section de methode : la seule ou elle parle a la premiere personne, en texte suivi. */
   approach: {
     title: string;
-    lead: string;
-    /** Presentation a la premiere personne, en tete de section. */
+    /** Presentation, deux phrases. */
     intro: string;
-    /** Amorce des trois points de methode. */
-    methodTitle: string;
     paragraphs: ApproachParagraph[];
     closing: string;
   };

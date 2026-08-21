@@ -10,10 +10,7 @@
     "og": "node scripts/build-og-image.mjs",
     "capture:seo": "node scripts/capture-seo-tool.mjs",
     "build:ia": "vite build --mode ia --outDir dist-ia",
-    "build:marketing": "vite build --mode marketing --outDir dist-marketing",
-    "build:tous": "npm run build:ia && npm run build:marketing",
-    "preview:ia": "vite preview --outDir dist-ia --port 4310",
-    "preview:marketing": "vite preview --outDir dist-marketing --port 4320"
+    "preview:ia": "vite preview --outDir dist-ia --port 4310"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

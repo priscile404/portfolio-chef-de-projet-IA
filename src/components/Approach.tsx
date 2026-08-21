@@ -13,7 +13,7 @@ export default function Approach() {
   return (
     <section id="methode" className="border-b border-ink">
       <div className="mx-auto w-full max-w-[1240px] px-5 py-16 md:px-8 md:py-24">
-        <SectionHeader title={approach.title} lead={approach.lead} />
+        <SectionHeader title={approach.title} />
 
         <div className="mt-10 max-w-[62ch] md:mt-12">
           <Reveal>
@@ -22,14 +22,9 @@ export default function Approach() {
             </p>
           </Reveal>
 
-          <Reveal delay={80}>
-            <h3 className="eyebrow mt-10 border-t border-rule pt-6 text-muted">
-              {approach.methodTitle}
-            </h3>
-          </Reveal>
 
           {approach.paragraphs.map((paragraphe, i) => (
-            <Reveal key={paragraphe.emphasis} delay={i * 80} className="mt-6">
+            <Reveal key={paragraphe.emphasis} delay={i * 80} className={i === 0 ? 'mt-8 border-t border-rule pt-6' : 'mt-6'}>
               <p className="text-[17px] leading-relaxed md:text-lg">
                 <strong className="font-semibold">{paragraphe.emphasis}</strong>{' '}
                 {paragraphe.body}

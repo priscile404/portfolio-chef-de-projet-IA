@@ -1,5 +1,4 @@
 import type { SiteContent } from './types';
-import { profil } from './profils';
 
 /**
  * Contenu editorial du portfolio.
@@ -31,8 +30,9 @@ export const content: SiteContent = {
     firstName: 'Priscile',
     lastName: 'Ngandjui Donfack',
     monogram: 'PND',
-    eyebrow: profil.eyebrow,
-    statement: profil.statement,
+    eyebrow: 'Chef de projet IA',
+    statement:
+      "Je pilote des projets IA du cadrage à la mise en production, jusqu’à l’outil que l’équipe utilise vraiment.",
     portrait: {
       src: '/portrait-priscile-ngandjui-donfack.jpg',
       alt: 'Portrait de Priscile Ngandjui Donfack',
@@ -57,7 +57,7 @@ export const content: SiteContent = {
 
   mail: {
     address: 'priscillengandjui@gmail.com',
-    subject: profil.sujetMail,
+    subject: 'Alternance chef de projet IA — septembre 2026',
     body: "Bonjour Priscile,\n\nJe vous contacte au sujet d’une alternance à partir de septembre 2026.\n\n",
   },
 
@@ -69,27 +69,24 @@ export const content: SiteContent = {
   ],
 
   approach: {
-    title: 'Qui je suis',
-    lead: 'Le contenu, sa visibilité, et les outils qui le produisent.',
+    title: 'Comment je travaille',
     intro:
-      'Je travaille aujourd’hui chez RénovtaLoc : je produis les contenus, et j’ai construit l’outil qui sert à les produire. Avant cela, de l’identité visuelle et du packaging en indépendante, puis de la création de contenu — 34 500 abonnés rassemblés seule sur TikTok. Ces trois métiers n’en font qu’un : décider quoi dire, le fabriquer, et le mettre devant les bonnes personnes.',
-    methodTitle: 'Trois choses reviennent dans chacun de mes projets.',
+      'J’aime apprendre, et j’apprends en construisant. Aujourd’hui chez RénovtaLoc, je produis les contenus et j’ai construit l’outil qui sert à les produire.',
     paragraphs: [
       {
-        emphasis: 'Le cadrage d’abord.',
-        body: 'Ce qu’on cherche à obtenir, et comment on saura que c’est obtenu. Le module d’audit que j’ai écrit note huit axes, et chaque note porte une preuve : une valeur mesurée, ou une citation vérifiée. Jamais un avis.',
+        emphasis: 'Cadrer d’abord.',
+        body: 'Savoir ce qu’on cherche, et à quoi on verra qu’on y est arrivé.',
       },
       {
-        emphasis: 'Ensuite l’outil le plus simple qui marche.',
-        body: 'La chaîne éditoriale enchaîne trois workflows et alimente cinq canaux, mais elle ne produit rien tant que personne n’a cliqué. Automatiser, ce n’est pas retirer la décision à quelqu’un.',
+        emphasis: 'Faire simple.',
+        body: 'La chaîne éditoriale enchaîne trois workflows, mais rien ne part sans un clic humain.',
       },
       {
-        emphasis: 'Et la mise en production.',
-        body: 'Un outil que personne n’ouvre ne vaut rien. Celui-là tourne chez RénovtaLoc depuis le 3 août 2026, et c’est la seule chose qui prouve qu’il fonctionne.',
+        emphasis: 'Mettre en production.',
+        body: 'L’outil tourne chez RénovtaLoc depuis le 3 août 2026.',
       },
     ],
-    closing:
-      'Sur cette page, les chiffres sont relevés, pas estimés. Quand il en manque un, je le dis plutôt que de l’inventer.',
+    closing: 'Les chiffres de cette page sont relevés, pas estimés.',
   },
 
   work: {
@@ -751,8 +748,8 @@ export const content: SiteContent = {
       },
       {
         icon: 'repeat',
-        label: 'Ce que j’apporte',
-        value: 'Une application en production, une chaîne éditoriale automatisée, deux comptes construits de zéro.',
+        label: 'Ce que je sais faire',
+        value: 'Produire du contenu, l’optimiser pour Google, automatiser ce qui se répète.',
       },
       {
         icon: 'pin',

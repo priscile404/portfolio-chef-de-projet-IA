@@ -13,11 +13,8 @@ npm run dev
 | Commande | Effet |
 | --- | --- |
 | `npm run dev` | Serveur de développement (http://localhost:5173) |
-| `npm run build:tous` | **Construit les deux portfolios** |
-| `npm run build:ia` | Profil chef de projet IA → `dist-ia/` |
-| `npm run build:marketing` | Profil marketing digital & IA → `dist-marketing/` |
+| `npm run build:ia` | Build de production dans `dist-ia/` — c'est celui que Netlify lance |
 | `npm run preview:ia` | Sert `dist-ia/` sur le port 4310 |
-| `npm run preview:marketing` | Sert `dist-marketing/` sur le port 4320 |
 | `npm run build` | Build simple dans `dist/` (profil IA par défaut) |
 | `npm run og` | Régénère `public/og-image.png` (1200 × 630) |
 
@@ -47,25 +44,14 @@ elle montre des **réalisations classées par compétence**, puis les projets pe
 L'ordre des domaines n'est pas neutre : IA & automatisation d'abord, parce que le point
 de différenciation est de construire les outils, pas seulement de produire les contenus.
 
-## Deux portfolios, une seule base de code
+## Mise en ligne
 
-Le site se construit deux fois, avec le **même contenu et les mêmes visuels**, mais un
-cadrage différent. Tout est dans `src/data/profils.ts` :
+Le site est publié sur **https://portfolioprisciledonfack.netlify.app**, reconstruit à
+chaque `git push` : Netlify lance `npm run build:ia` et publie `dist-ia/`.
 
-| | `ia` | `marketing` |
-| --- | --- | --- |
-| Surtitre | Chef de projet IA | Marketing digital & IA |
-| Promesse | Piloter des projets IA du cadrage à la production | Produire des contenus et les outils qui les produisent |
-| Objet du mail | Alternance chef de projet IA | Alternance marketing digital |
-| Premier domaine | IA & automatisation | Contenu, photo & vidéo |
-| Sortie | `dist-ia/` | `dist-marketing/` |
-
-Les métadonnées (`<title>`, description, `jobTitle` du JSON-LD) viennent de `.env.ia` et
-`.env.marketing` via les repères `%VITE_*%` d'`index.html`.
-
-**C'est le point important : une correction faite une fois vaut pour les deux sites.**
-Deux dossiers dupliqués auraient obligé à tout corriger deux fois, et à vivre avec la
-divergence qui finit toujours par s'installer.
+L'adresse du site vit dans `.env.ia` (`VITE_URL`), reprise par `index.html` via les repères
+`%VITE_*%` pour le lien canonique et les aperçus de partage. Si le sous-domaine Netlify
+change, corriger cette ligne suffit.
 
 **Structure de la page** : accueil, méthode, réalisations, projets personnels, ce que je
 cherche, contact.
@@ -85,7 +71,7 @@ index.html            meta, Open Graph, JSON-LD Person (sans champ education)
 public/
   cv-priscile-ngandjui-donfack.pdf   CV servi depuis le site
   og-image.png / og-image.svg        image de partage
-  favicon.svg, robots.txt, sitemap.xml
+  favicon.svg, robots.txt
   captures/                          visuels des cartes et des modales
 docs/captures.md        liste des visuels a fournir et cadrages
 src/
@@ -93,7 +79,7 @@ src/
   data/types.ts       types du contenu
   lib/mailto.ts       lien mailto avec objet pré-rempli
   components/
-    Hero, Work (réalisations + projets), RealizationCard, RealizationModal,
+    Hero, Approach, Work (réalisations + projets), RealizationCard, RealizationModal,
     Media, Search, Contact, Nav, Reveal, SectionHeader, Icon
 ```
 
@@ -106,9 +92,8 @@ src/
   sous `prefers-reduced-motion: reduce`.
 - Vue détaillée en `<dialog>` natif : piège de focus, `Échap` et fond modal gérés par le
   navigateur.
-- Le formulaire de contact ouvre la messagerie avec l'objet pré-rempli. Pas de backend,
-  pas de captcha. Pour recevoir les messages sans passer par le client mail, brancher un
-  service de formulaire (Formspree, Basin) sur `handleSubmit` dans `src/components/Contact.tsx`.
+- Pas de formulaire de contact : trois canaux directs et deux boutons. Un formulaire qui
+  se contente d'ouvrir la messagerie ajoute trois champs à remplir pour rien.
 
 ## Chiffres
 
@@ -127,9 +112,6 @@ Le « 10+ clients » de la carte freelance vient du CV, pas d'un décompte de fi
 
 ## Autres éléments à compléter
 
-- `index.html` : remplacer `https://votre-domaine.fr` par le domaine réel (canonical, `og:url`,
-  `og:image`, `twitter:image`, JSON-LD). Même remplacement dans `public/robots.txt` et
-  `public/sitemap.xml`.
 - Vérifier le numéro de téléphone et l'URL LinkedIn dans `src/data/content.ts`
   (repris de la maquette fournie, non vérifiés).
 - **Aucun emplacement vide** : toutes les cartes et toutes les vues détaillées sont illustrées
@@ -142,6 +124,8 @@ Le « 10+ clients » de la carte freelance vient du CV, pas d'un décompte de fi
 
 ## Mesures
 
-Lighthouse sur le build de production (`npm run preview`, Chrome headless, profil mobile
-par défaut) : performance 97, accessibilité 100, bonnes pratiques 100, SEO 100.
-Vérifié sans débordement horizontal à 375 px.
+Lighthouse sur le site en ligne : performance 99, accessibilité 100, bonnes pratiques 100,
+SEO 100. Aucun point ouvert, LCP à 1,7 s.
+
+Aucun débordement horizontal à 375, 768 et 1440 px. Hiérarchie de titres h1 → h4 sans saut,
+12 images pour 12 attributs alt.

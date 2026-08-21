@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { content } from '../data/content';
-import { profil } from '../data/profils';
 import type { Realization } from '../data/types';
 import Reveal from './Reveal';
 import SectionHeader from './SectionHeader';
@@ -9,10 +8,6 @@ import RealizationModal from './RealizationModal';
 
 const { work, personal } = content;
 
-/** L'ordre des domaines depend du profil : le premier annonce le positionnement. */
-const domaines = profil.ordreDomaines
-  .map((id) => work.groups.find((groupe) => groupe.id === id))
-  .filter((groupe): groupe is (typeof work.groups)[number] => groupe !== undefined);
 
 export default function Work() {
   const [open, setOpen] = useState<Realization | null>(null);
@@ -23,7 +18,7 @@ export default function Work() {
         <div className="mx-auto w-full max-w-[1240px] px-5 py-16 md:px-8 md:py-24">
           <SectionHeader title={work.title} lead={work.lead} />
 
-          {domaines.map((group, groupIndex) => (
+          {work.groups.map((group, groupIndex) => (
             <div key={group.id} id={group.id} className="mt-12 first:mt-10 md:mt-16">
               <header className="flex flex-col gap-3 border-b-2 border-ink pb-3 md:flex-row md:items-end md:justify-between md:gap-8">
                 <h3 className="display text-2xl md:text-4xl">{group.title}</h3>
