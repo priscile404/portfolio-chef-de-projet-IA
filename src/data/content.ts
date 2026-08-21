@@ -71,7 +71,7 @@ export const content: SiteContent = {
   approach: {
     title: 'Comment je travaille',
     intro:
-      'J’aime apprendre, et j’apprends en construisant. Aujourd’hui chez RénovtaLoc, je produis les contenus et j’ai construit l’outil qui sert à les produire.',
+      'J’aime apprendre, et j’apprends en construisant. Sur ma dernière mission, j’ai produit les contenus et construit l’outil qui servait à les produire.',
     paragraphs: [
       {
         emphasis: 'Cadrer d’abord.',
@@ -83,7 +83,7 @@ export const content: SiteContent = {
       },
       {
         emphasis: 'Mettre en production.',
-        body: 'L’outil tourne chez RénovtaLoc depuis le 3 août 2026.',
+        body: 'L’outil a été mis en ligne le 3 août 2026 et remis à l’équipe.',
       },
     ],
     closing: 'Les chiffres de cette page sont relevés, pas estimés.',
@@ -110,8 +110,8 @@ export const content: SiteContent = {
               framing:
                 "captures/ia-01-app.png — écran principal de l’application, format 16/10, 1600 px de large",
             },
-            result: "Outil interne utilisé par l’équipe, en production depuis le 3 août 2026.",
-            comment: 'RénovtaLoc · 2026 · conçue et développée seule, en production depuis le 3 août',
+            result: "Outil interne remis à l’équipe, mis en production le 3 août 2026.",
+            comment: 'RénovtaLoc · 2026 · conçue et développée seule, mise en production le 3 août',
             tags: ['Node.js', 'API Claude', 'SEO', 'GEO / AEO'],
             metrics: [
               { value: '17', label: 'articles générés et enregistrés' },
@@ -120,7 +120,7 @@ export const content: SiteContent = {
             ],
             detail: {
               intro:
-                "Un outil interne, pas une démonstration : il est déployé en ligne et sert à produire et auditer les contenus avant publication.",
+                "Un outil interne, pas une démonstration : il a été déployé en ligne et sert à produire et auditer les contenus avant publication.",
               context:
                 'La production des pages reposait sur un travail manuel, sans méthode partagée ni contrôle avant publication.',
               action:
@@ -218,8 +218,8 @@ export const content: SiteContent = {
                 'captures/ia-03-veille-canevas.png — canevas n8n entier, les 6 nœuds et leurs libellés, 1600 px.',
             },
             result:
-              'Un brief de veille sourcé arrive chaque matin à 06h30, sans aucune intervention.',
-            comment: 'Projet interne · 2026 · workflow n8n en service depuis le 16 août',
+              'Un brief de veille sourcé, livré chaque matin à 06h30 sans aucune intervention.',
+            comment: 'Projet interne · 2026 · workflow n8n mis en service le 16 août',
             tags: ['n8n', 'Perplexity', 'Gmail', 'Automatisation'],
             metrics: [
               { value: '06h30', label: 'brief livré chaque matin' },
