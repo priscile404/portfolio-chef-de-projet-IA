@@ -1,0 +1,25 @@
+node_modules
+*.local
+.DS_Store
+
+# Sorties de build : Netlify les reconstruit lui-meme.
+dist
+dist-*
+
+# Variables de build.
+# .env.ia et .env.marketing ne contiennent aucun secret : seulement le titre, la
+# description et l'adresse de chaque profil. Ils doivent partir sur le depot, sinon
+# la construction chez l'hebergeur laisse les reperes %VITE_*% en clair dans la page.
+.env
+.env.*
+!.env.ia
+!.env.marketing
+
+# Apercus et archives generes en local.
+apercu/
+apercu-*.png
+apercu-*.jpg
+preuve-*.jpg
+v-*.jpg
+portfolio-*.zip
+planche-*.json

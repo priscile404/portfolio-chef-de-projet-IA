@@ -1,0 +1,34 @@
+{
+  "name": "portfolio-priscile-ngandjui-donfack",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "og": "node scripts/build-og-image.mjs",
+    "capture:seo": "node scripts/capture-seo-tool.mjs",
+    "build:ia": "vite build --mode ia --outDir dist-ia",
+    "build:marketing": "vite build --mode marketing --outDir dist-marketing",
+    "build:tous": "npm run build:ia && npm run build:marketing",
+    "preview:ia": "vite preview --outDir dist-ia --port 4310",
+    "preview:marketing": "vite preview --outDir dist-marketing --port 4320"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/inter": "^5.3.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.0.5",
+    "sharp": "^0.35.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.1"
+  }
+}

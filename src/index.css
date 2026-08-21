@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/archivo/wdth.css';
+@import '@fontsource-variable/inter/wght.css';
+
+@theme {
+  /* Deux neutres + une seule couleur d'accent saturee. */
+  --color-paper: #f2f0eb;
+  --color-shade: #e6e2d8;
+  --color-ink: #14130f;
+  --color-muted: #5a554b;
+  --color-rule: #c9c4b6;
+  --color-accent: #c1300f;
+
+  --font-display: 'Archivo Variable', 'Arial Narrow', Arial, sans-serif;
+  --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+}
+
+/* Titrage : grotesque condense, capitales, interlignage serre. */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 70%;
+  text-transform: uppercase;
+  line-height: 0.92;
+  letter-spacing: 0.005em;
+}
+
+/* Sur-titre de section : petite capitale, tres espacee. */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Emplacement d'image en attente : hachures fines, pour que le vide soit lisible comme une consigne. */
+@utility hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-rule) 0 1px,
+    transparent 1px 12px
+  );
+}
+
+/* Grille apparente : hairlines verticales, uniquement a partir de md. */
+@utility grid-rules {
+  background-image: linear-gradient(to right, var(--color-rule) 1px, transparent 1px);
+  background-size: 25% 100%;
+  background-position: -1px 0;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* La modale native gere le piege de focus et la touche Echap. */
+  dialog::backdrop {
+    background-color: rgb(20 19 15 / 0.72);
+  }
+
+  dialog {
+    max-width: none;
+    max-height: none;
+  }
+}
+
+/* Apparition au scroll : la seule animation de la page avec les survols. */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 420ms ease-out,
+    transform 420ms ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
