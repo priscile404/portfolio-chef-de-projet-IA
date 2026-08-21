@@ -70,8 +70,7 @@ export const content: SiteContent = {
 
   approach: {
     title: 'Comment je travaille',
-    intro:
-      'J’aime apprendre, et j’apprends en construisant. Sur ma dernière mission, j’ai produit les contenus et construit l’outil qui servait à les produire.',
+    intro: 'J’aime apprendre, et j’apprends en construisant.',
     paragraphs: [
       {
         emphasis: 'Cadrer d’abord.',
@@ -79,11 +78,11 @@ export const content: SiteContent = {
       },
       {
         emphasis: 'Faire simple.',
-        body: 'La chaîne éditoriale enchaîne trois workflows, mais rien ne part sans un clic humain.',
+        body: 'La solution la plus simple qui règle le problème.',
       },
       {
-        emphasis: 'Mettre en production.',
-        body: 'L’outil a été mis en ligne le 3 août 2026 et remis à l’équipe.',
+        emphasis: 'Aller au bout.',
+        body: 'Livrer quelque chose qui marche, pas une maquette.',
       },
     ],
     closing: 'Les chiffres de cette page sont relevés, pas estimés.',
