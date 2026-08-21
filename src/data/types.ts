@@ -136,7 +136,6 @@ export interface SiteContent {
     /** Presentation, deux phrases. */
     intro: string;
     paragraphs: ApproachParagraph[];
-    closing: string;
   };
   work: {
     title: string;

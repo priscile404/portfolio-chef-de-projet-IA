@@ -85,7 +85,6 @@ export const content: SiteContent = {
         body: 'Livrer quelque chose qui marche, pas une maquette.',
       },
     ],
-    closing: 'Les chiffres de cette page sont relevés, pas estimés.',
   },
 
   work: {

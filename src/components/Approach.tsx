@@ -31,12 +31,6 @@ export default function Approach() {
               </p>
             </Reveal>
           ))}
-
-          <Reveal delay={240}>
-            <p className="mt-8 border-l-2 border-accent py-1 pl-5 text-lg leading-snug font-medium text-balance md:text-xl">
-              {approach.closing}
-            </p>
-          </Reveal>
         </div>
       </div>
     </section>
