@@ -86,11 +86,15 @@ src/
 ## Choix techniques
 
 - React 19 + Vite + TypeScript + Tailwind v4.
-- Theme sombre : fond #0C0C0C, texte #D7E2EA, un seul accent magenta.
+- Theme sombre releve : fond #141519, surfaces de carte #1D1F26 sur #262933, texte
+  #EEF3F7, un seul accent magenta. Le fond n'est volontairement pas noir : sans
+  etagement des surfaces, les cartes se confondaient avec la page.
 - Police Kanit auto-hebergee, **sous-ensemble latin uniquement** — charger tous les
   sous-ensembles (thai, vietnamien) coutait 60 Ko pour rien.
-- La 3D est faite en CSS : perspective sur les cartes au survol, anneau en rotation
-  derriere le hero, halos radiaux. **Aucun fichier 3D, aucune librairie.**
+- Trois objets 3D dans `public/objets/` (torus, sphere, spirale, 600 x 600, ~90 Ko
+  chacun), generes dans Higgsfield puis composites en `mix-blend-mode: screen` : les
+  rendus arrivent sur fond noir, sans canal alpha. Aucune librairie 3D. Le reste de la
+  profondeur reste en CSS : perspective sur les cartes au survol, halos radiaux.
 - Le bandeau défilant utilise des vignettes de 480 × 300 générées depuis
   `public/captures` vers `public/bandeau` : 20 fichiers, 217 Ko au total. En pleine
   résolution le LCP passait de 2,8 à 3,8 s.
@@ -127,8 +131,9 @@ Le « 10+ clients » de la carte freelance vient du CV, pas d'un décompte de fi
 
 ## Mesures
 
-Lighthouse sur le build de production : performance 91, accessibilite 100, bonnes
-pratiques 100, SEO 100. Aucun point ouvert, LCP a 2,8 s.
+Lighthouse sur le build de production : performance 94, accessibilite 100, bonnes
+pratiques 100, SEO 100. Aucun point ouvert, LCP a 2,8 s. Contraste conforme sur toute
+la page.
 
 Aucun debordement horizontal a 375, 768 et 1440 px. Hierarchie de titres h1 vers h4
 sans saut.

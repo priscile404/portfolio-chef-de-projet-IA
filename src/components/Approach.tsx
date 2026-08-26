@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { content } from '../data/content';
+import Objet3D from './Objet3D';
 import Reveal from './Reveal';
 import SectionHeader from './SectionHeader';
 
@@ -72,6 +73,7 @@ export default function Approach() {
   return (
     <section id="methode" className="relative">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 aurora opacity-60" />
+      <Objet3D nom="sphere" className="top-1/2 right-[4%] hidden w-[320px] -translate-y-1/2 opacity-80 lg:block" />
 
       <div className="relative mx-auto w-full max-w-[1240px] px-5 py-20 md:px-8 md:py-28">
         <SectionHeader title={approach.title} />

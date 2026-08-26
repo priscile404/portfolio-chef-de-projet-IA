@@ -2,6 +2,7 @@ import { content } from '../data/content';
 import { mailtoHref } from '../lib/mailto';
 import Icon from './Icon';
 import Magnet from './Magnet';
+import Objet3D from './Objet3D';
 import Reveal from './Reveal';
 
 const { identity, cv, availability } = content;
@@ -11,17 +12,11 @@ export default function Hero() {
     <section id="haut" className="relative flex min-h-screen flex-col overflow-x-clip">
       {/* Profondeur : halos diffus et anneau en perspective, aucun fichier image. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 aurora" />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 right-[8%] hidden h-[620px] w-[620px] -translate-y-1/2 lg:block"
-        style={{ perspective: '900px' }}
-      >
-        <div className="orbit absolute inset-0">
-          <div className="orbit-ring" />
-          <div className="orbit-ring" style={{ inset: '9%' }} />
-          <div className="orbit-ring" style={{ inset: '20%' }} />
-        </div>
-      </div>
+      <Objet3D
+        nom="torus"
+        className="top-[10%] left-[52%] hidden w-[220px] opacity-80 lg:block xl:w-[280px]"
+      />
+      <Objet3D nom="spirale" className="bottom-[18%] left-[46%] hidden w-[170px] opacity-60 xl:block" />
 
       <div className="relative z-20 mx-auto flex w-full max-w-[1500px] flex-1 flex-col px-6 pt-12 md:px-10 md:pt-16">
         <div className="grid flex-1 items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-6">
