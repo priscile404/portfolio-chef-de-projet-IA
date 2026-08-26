@@ -58,7 +58,7 @@ function TexteRevele({ texte }: { texte: string }) {
         <span
           key={i}
           style={{
-            opacity: progression >= (i + 1) / lettres.length ? 1 : 0.18,
+            opacity: progression >= (i + 1) / lettres.length ? 1 : 0.3,
             transition: 'opacity 220ms linear',
           }}
         >
@@ -73,7 +73,7 @@ export default function Approach() {
   return (
     <section id="methode" className="relative">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 aurora opacity-60" />
-      <Objet3D nom="sphere" className="top-1/2 right-[4%] hidden w-[320px] -translate-y-1/2 opacity-80 lg:block" />
+      <Objet3D nom="sphere" delai={-9} className="top-[calc(50%-10rem)] right-[4%] hidden w-[320px] lg:block" />
 
       <div className="relative mx-auto w-full max-w-[1240px] px-5 py-20 md:px-8 md:py-28">
         <SectionHeader title={approach.title} />

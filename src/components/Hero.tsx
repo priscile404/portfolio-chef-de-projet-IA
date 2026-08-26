@@ -14,9 +14,14 @@ export default function Hero() {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 aurora" />
       <Objet3D
         nom="torus"
-        className="top-[10%] left-[52%] hidden w-[220px] opacity-80 lg:block xl:w-[280px]"
+        delai={0}
+        className="top-[10%] left-[52%] hidden w-[220px] lg:block xl:w-[280px]"
       />
-      <Objet3D nom="spirale" className="bottom-[18%] left-[46%] hidden w-[170px] opacity-60 xl:block" />
+      <Objet3D
+        nom="spirale"
+        delai={-5}
+        className="bottom-[18%] left-[46%] hidden w-[170px] xl:block"
+      />
 
       <div className="relative z-20 mx-auto flex w-full max-w-[1500px] flex-1 flex-col px-6 pt-12 md:px-10 md:pt-16">
         <div className="grid flex-1 items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-6">
@@ -75,11 +80,11 @@ export default function Hero() {
                 aria-hidden="true"
                 className="breathe absolute -inset-10 rounded-full blur-3xl"
                 style={{
-                  background: 'radial-gradient(circle, rgb(182 0 168 / 0.32), transparent 70%)',
+                  background: 'radial-gradient(circle, rgb(168 26 155 / 0.22), transparent 70%)',
                 }}
               />
               <Magnet padding={140} strength={4} className="relative">
-                <div className="relative overflow-hidden rounded-[2rem] border border-chalk/15">
+                <div className="panneau relative overflow-hidden">
                   <img
                     src={identity.portrait?.src}
                     alt={identity.portrait?.alt ?? ''}
@@ -89,14 +94,6 @@ export default function Hero() {
                     decoding="async"
                     className="w-full object-cover"
                     style={{ aspectRatio: '4 / 5' }}
-                  />
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0"
-                    style={{
-                      background:
-                        'linear-gradient(180deg, rgb(12 12 12 / 0) 55%, rgb(12 12 12 / 0.55) 100%)',
-                    }}
                   />
                 </div>
               </Magnet>

@@ -79,22 +79,30 @@ src/
   data/types.ts       types du contenu
   lib/mailto.ts       lien mailto avec objet pré-rempli
   components/
-    Hero, Approach, Work (réalisations + projets), RealizationCard, RealizationModal,
-    Media, Search, Contact, Nav, Reveal, SectionHeader, Icon
+    Fond (fond animé), Hero, Approach, Work (réalisations + projets), RealizationCard,
+    RealizationModal, Media, Magnet, Marquee, Objet3D, Search, Contact, Nav, Reveal,
+    SectionHeader, Icon
 ```
 
 ## Choix techniques
 
 - React 19 + Vite + TypeScript + Tailwind v4.
-- Theme sombre releve : fond #141519, surfaces de carte #1D1F26 sur #262933, texte
-  #EEF3F7, un seul accent magenta. Le fond n'est volontairement pas noir : sans
-  etagement des surfaces, les cartes se confondaient avec la page.
+- Theme clair : page #F4F6F9, cartes blanches, texte #14161C, un seul accent magenta
+  #A81A9B. La page n'est volontairement pas blanche — sinon les cartes blanches s'y
+  fondent. Sur fond clair l'elevation se lit par l'ombre portee, pas par un degrade.
+  Tous les rapports de contraste sont verifies >= 4.5:1 avant d'etre poses.
 - Police Kanit auto-hebergee, **sous-ensemble latin uniquement** — charger tous les
   sous-ensembles (thai, vietnamien) coutait 60 Ko pour rien.
-- Trois objets 3D dans `public/objets/` (torus, sphere, spirale, 600 x 600, ~90 Ko
-  chacun), generes dans Higgsfield puis composites en `mix-blend-mode: screen` : les
-  rendus arrivent sur fond noir, sans canal alpha. Aucune librairie 3D. Le reste de la
-  profondeur reste en CSS : perspective sur les cartes au survol, halos radiaux.
+- Trois objets 3D dans `public/objets/` (torus, sphere, spirale, 600 x 600, ~95 Ko
+  chacun), generes dans Higgsfield. Aucune librairie 3D. Les rendus arrivent composites
+  sur fond noir, sans canal alpha : l'opacite a ete reconstruite depuis la luminance
+  (`a = max(r,g,b)`, puis de-multiplication) pour obtenir une vraie transparence. Un
+  `mix-blend-mode: screen` aurait suffi sur fond sombre mais fait disparaitre les
+  objets sur fond clair.
+- Fond anime (`Fond.tsx`) : trois taches de couleur floutees qui derivent sur 28 a 40 s
+  derriere toute la page. Calque `fixed`, anime uniquement en `transform` — l'animation
+  reste sur le compositeur, CLS a 0. Mesure : 45 % des pixels changent en 4 s, et 0 %
+  sous `prefers-reduced-motion`.
 - Le bandeau défilant utilise des vignettes de 480 × 300 générées depuis
   `public/captures` vers `public/bandeau` : 20 fichiers, 217 Ko au total. En pleine
   résolution le LCP passait de 2,8 à 3,8 s.
@@ -132,8 +140,8 @@ Le « 10+ clients » de la carte freelance vient du CV, pas d'un décompte de fi
 ## Mesures
 
 Lighthouse sur le build de production : performance 94, accessibilite 100, bonnes
-pratiques 100, SEO 100. Aucun point ouvert, LCP a 2,8 s. Contraste conforme sur toute
-la page.
+pratiques 100, SEO 100. Aucun point ouvert, LCP a 2,8 s, CLS a 0, TBT a 80 ms.
+Contraste conforme sur toute la page.
 
 Aucun debordement horizontal a 375, 768 et 1440 px. Hierarchie de titres h1 vers h4
 sans saut.

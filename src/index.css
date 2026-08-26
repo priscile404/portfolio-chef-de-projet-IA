@@ -6,15 +6,17 @@
 @import '@fontsource/kanit/latin-900.css';
 
 @theme {
-  /* Fond releve et surfaces etagees : sans elevation, rien ne se detache du fond. */
-  --color-ink: #141519;
-  --color-panel: #1d1f26;
-  --color-panel-2: #262933;
-  --color-chalk: #eef3f7;
-  --color-mute: #a4adba;
-  --color-line: #333844;
-  --color-accent: #d63ac9;
-  --color-accent-2: #9a5ce0;
+  /* Theme clair. La page n'est pas blanche : elle est legerement grise, pour que
+     les cartes blanches se detachent au lieu de se fondre dedans.
+     Tous les rapports de contraste sont verifies >= 4.5:1. */
+  --color-ink: #f4f6f9;
+  --color-panel: #ffffff;
+  --color-panel-2: #e9edf3;
+  --color-chalk: #14161c;
+  --color-mute: #5a6472;
+  --color-line: #d7dde6;
+  --color-accent: #a81a9b;
+  --color-accent-2: #6d3bbf;
 
   --font-display: 'Kanit', system-ui, sans-serif;
   --font-sans: 'Kanit', system-ui, sans-serif;
@@ -31,8 +33,8 @@
 
 /* Le degrade de titre. Repli en couleur pleine si background-clip manque. */
 @utility gradient-text {
-  color: #eef3f7;
-  background: linear-gradient(180deg, #8e97a5 0%, #eef3f7 100%);
+  color: #14161c;
+  background: linear-gradient(180deg, #4a5364 0%, #14161c 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -57,12 +59,12 @@
   color: #fff;
 }
 
-/* Halo diffus place derriere les sections : la profondeur sans image. */
+/* Halo diffus place derriere une section. */
 @utility aurora {
   background:
-    radial-gradient(40% 46% at 16% 20%, rgb(214 58 201 / 0.16) 0%, transparent 70%),
-    radial-gradient(36% 42% at 84% 16%, rgb(154 92 224 / 0.14) 0%, transparent 70%),
-    radial-gradient(48% 40% at 52% 98%, rgb(255 138 60 / 0.08) 0%, transparent 72%);
+    radial-gradient(40% 46% at 16% 20%, rgb(168 26 155 / 0.10) 0%, transparent 70%),
+    radial-gradient(36% 42% at 84% 16%, rgb(109 59 191 / 0.09) 0%, transparent 70%),
+    radial-gradient(48% 40% at 52% 98%, rgb(240 120 30 / 0.07) 0%, transparent 72%);
 }
 
 @layer base {
@@ -86,18 +88,112 @@
   }
 
   :focus-visible {
-    outline: 3px solid #e879f9;
+    outline: 3px solid #8e1184;
     outline-offset: 3px;
   }
 
   dialog::backdrop {
-    background-color: rgb(10 10 12 / 0.88);
+    background-color: rgb(20 22 28 / 0.55);
     backdrop-filter: blur(3px);
   }
 
   dialog {
     max-width: none;
     max-height: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Fond anime
+ * Trois taches de couleur tres floues qui derivent lentement derriere
+ * toute la page. Elles ne bougent qu'en `transform` : aucun recalcul de
+ * mise en page, l'animation reste sur le compositeur.
+ * ------------------------------------------------------------------ */
+.fond {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.tache {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.tache-1 {
+  top: -14vh;
+  left: -10vw;
+  width: 52vw;
+  height: 52vw;
+  background: radial-gradient(circle, rgb(168 26 155 / 0.30), transparent 68%);
+  animation: derive-1 28s ease-in-out infinite;
+}
+
+.tache-2 {
+  top: 22vh;
+  right: -16vw;
+  width: 46vw;
+  height: 46vw;
+  background: radial-gradient(circle, rgb(109 59 191 / 0.26), transparent 68%);
+  animation: derive-2 34s ease-in-out infinite;
+}
+
+.tache-3 {
+  bottom: -18vh;
+  left: 28vw;
+  width: 48vw;
+  height: 48vw;
+  background: radial-gradient(circle, rgb(240 120 30 / 0.20), transparent 68%);
+  animation: derive-3 40s ease-in-out infinite;
+}
+
+@keyframes derive-1 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(14vw, 10vh, 0) scale(1.18);
+  }
+}
+
+@keyframes derive-2 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.1);
+  }
+  50% {
+    transform: translate3d(-12vw, 14vh, 0) scale(0.9);
+  }
+}
+
+@keyframes derive-3 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-16vw, -12vh, 0) scale(1.22);
+  }
+}
+
+/* Les objets 3D flottent, chacun a son rythme (variante posee en style inline). */
+.flotte {
+  animation: flotte 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes flotte {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-26px) rotate(6deg);
   }
 }
 
@@ -118,7 +214,9 @@
 /* Carte inclinee au survol : la profondeur vient de la perspective, pas d'une ombre. */
 .tilt {
   transform-style: preserve-3d;
-  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 400ms ease;
 }
 
 .tilt-scene {
@@ -129,43 +227,43 @@
   transform: rotateX(3deg) rotateY(-4deg) translateZ(18px);
 }
 
-/* Anneau en rotation lente : trois disques en perspective, sans aucune image. */
-.orbit {
-  transform-style: preserve-3d;
-  animation: orbit-spin 26s linear infinite;
-}
-
-.orbit-ring {
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgb(215 226 234 / 0.16);
-  border-radius: 9999px;
-}
-
-@keyframes orbit-spin {
-  from {
-    transform: rotateX(68deg) rotateZ(0deg);
-  }
-  to {
-    transform: rotateX(68deg) rotateZ(360deg);
-  }
-}
-
 /* Lueur qui respire, posee derriere le portrait. */
 @keyframes breathe {
   0%,
   100% {
-    opacity: 0.55;
+    opacity: 0.5;
     transform: scale(1);
   }
   50% {
-    opacity: 0.85;
+    opacity: 0.8;
     transform: scale(1.08);
   }
 }
 
 .breathe {
   animation: breathe 7s ease-in-out infinite;
+}
+
+/* Carte : surface blanche posee sur la page grise. Sur fond clair, l'elevation
+   se lit par l'ombre portee, pas par un degrade. */
+.panneau {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 1px 2px rgb(20 22 28 / 0.04),
+    0 8px 24px rgb(20 22 28 / 0.06);
+  transition:
+    border-color 250ms ease,
+    box-shadow 400ms ease,
+    transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tilt-scene:hover .panneau {
+  border-color: rgb(168 26 155 / 0.45);
+  box-shadow:
+    0 2px 4px rgb(20 22 28 / 0.05),
+    0 20px 44px rgb(168 26 155 / 0.16);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -184,6 +282,11 @@
     transform: none;
   }
 
+  .tache,
+  .flotte {
+    animation: none;
+  }
+
   *,
   *::before,
   *::after {
@@ -191,16 +294,4 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-/* Carte : surface relevee, filet net, coin arrondi. Sans elle, le contenu flotte. */
-.panneau {
-  background: linear-gradient(180deg, var(--color-panel) 0%, var(--color-ink) 100%);
-  border: 1px solid var(--color-line);
-  border-radius: 1.5rem;
-  transition: border-color 250ms ease, transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.tilt-scene:hover .panneau {
-  border-color: rgb(214 58 201 / 0.5);
 }

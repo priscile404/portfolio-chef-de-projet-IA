@@ -1,4 +1,5 @@
 import { content } from './data/content';
+import Fond from './components/Fond';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
@@ -17,9 +18,11 @@ export default function App() {
         Aller au contenu
       </a>
 
+      <Fond />
+
       <Nav />
 
-      <main id="contenu">
+      <main id="contenu" className="relative z-10">
         <Hero />
         <Marquee />
         <Approach />
@@ -28,7 +31,7 @@ export default function App() {
         <Contact />
       </main>
 
-      <footer className="mx-auto flex w-full max-w-[1240px] flex-col gap-2 border-t border-line px-5 py-8 text-xs font-light text-mute sm:flex-row sm:items-center sm:justify-between md:px-8">
+      <footer className="relative z-10 mx-auto flex w-full max-w-[1240px] flex-col gap-2 border-t border-line px-5 py-8 text-xs font-light text-mute sm:flex-row sm:items-center sm:justify-between md:px-8">
         <p>{content.footer.copyright}</p>
         <a href="#haut" className="inline-block py-2 transition-opacity duration-200 hover:opacity-70">
           Retour en haut

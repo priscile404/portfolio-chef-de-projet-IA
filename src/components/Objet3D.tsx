@@ -1,16 +1,17 @@
 interface Objet3DProps {
   /** Nom du fichier dans public/objets, sans extension. */
-  nom: 'torus' | 'sphere' | 'spirale';
+  nom: string;
   className?: string;
+  /** Decalage de l'animation de flottement, pour que les objets ne bougent pas ensemble. */
+  delai?: number;
 }
 
 /**
  * Objet 3D decoratif.
- * Les rendus sont sur fond noir : `mix-blend-mode: screen` fait disparaitre ce fond
- * sans passer par une couche alpha, et l'objet se pose donc sur n'importe quelle
- * surface sombre sans decoupe visible.
+ * Les rendus sont des PNG a transparence reelle : le fond noir d'origine a ete
+ * converti en canal alpha, ce qui les rend lisibles sur le fond clair.
  */
-export default function Objet3D({ nom, className = '' }: Objet3DProps) {
+export default function Objet3D({ nom, className = '', delai = 0 }: Objet3DProps) {
   return (
     <img
       src={`/objets/${nom}.png`}
@@ -20,8 +21,8 @@ export default function Objet3D({ nom, className = '' }: Objet3DProps) {
       decoding="async"
       width={600}
       height={600}
-      className={`pointer-events-none absolute select-none ${className}`}
-      style={{ mixBlendMode: 'screen' }}
+      className={`flotte pointer-events-none absolute select-none ${className}`}
+      style={{ animationDelay: `${delai}s` }}
     />
   );
 }
