@@ -6,7 +6,7 @@ import Media from './Media';
 interface RealizationCardProps {
   item: Realization;
   onOpen: (item: Realization) => void;
-  /** Le premier visuel de la page n’est pas charge en differe. */
+  /** Le premier visuel de la page n'est pas charge en differe. */
   eager?: boolean;
   /** Niveau de titre, pour garder la hierarchie h2 > h3 > h4. */
   headingLevel?: 3 | 4;
@@ -24,28 +24,31 @@ export default function RealizationCard({
   const Heading = headingLevel === 3 ? 'h3' : 'h4';
 
   return (
-    <article className={`w-full ${horizontal ? 'md:grid md:grid-cols-2' : 'flex h-full flex-col'}`}>
-      <Media
-        slot={item.image}
-        ratio="16 / 10"
-        eager={eager}
-        className={horizontal ? 'md:h-full md:!aspect-auto' : ''}
-      />
+    <article
+      className={`tilt-scene w-full ${horizontal ? 'md:grid md:grid-cols-2' : 'flex h-full flex-col'}`}
+    >
+      <div className={`tilt overflow-hidden rounded-2xl ${horizontal ? 'md:h-full' : ''}`}>
+        <Media
+          slot={item.image}
+          ratio="16 / 10"
+          eager={eager}
+          className={horizontal ? 'md:h-full md:!aspect-auto' : ''}
+        />
+      </div>
 
-      <div
-        className={`flex flex-1 flex-col border-t border-rule p-5 md:p-6 ${
-          horizontal ? 'md:border-t-0 md:border-l' : ''
-        }`}
-      >
-        <Heading className="display text-xl md:text-2xl">{item.title}</Heading>
-        <p className="mt-3 text-[15px] leading-snug">{item.result}</p>
+      <div className={`flex flex-1 flex-col pt-5 md:pt-6 ${horizontal ? 'md:pt-0 md:pl-8' : ''}`}>
+        <Heading className="display text-xl text-chalk md:text-2xl">{item.title}</Heading>
+        <p className="mt-3 text-[15px] leading-snug font-light text-chalk/75">{item.result}</p>
 
         {item.metrics.length > 0 ? (
-          <dl className="mt-5 grid gap-px border-y border-rule bg-rule" style={{ gridTemplateColumns: `repeat(${item.metrics.length}, minmax(0, 1fr))` }}>
+          <dl
+            className="mt-5 grid gap-px border-y border-line bg-line"
+            style={{ gridTemplateColumns: `repeat(${item.metrics.length}, minmax(0, 1fr))` }}
+          >
             {item.metrics.map((metric) => (
-              <div key={metric.label} className="bg-paper py-4 pr-3">
-                <dt className="display text-2xl text-accent md:text-3xl">{metric.value}</dt>
-                <dd className="mt-1.5 text-xs leading-tight text-muted">{metric.label}</dd>
+              <div key={metric.label} className="bg-ink py-4 pr-3">
+                <dt className="display text-2xl text-chalk md:text-3xl">{metric.value}</dt>
+                <dd className="mt-1.5 text-xs leading-tight font-light text-mute">{metric.label}</dd>
               </div>
             ))}
           </dl>
@@ -53,7 +56,10 @@ export default function RealizationCard({
 
         <ul className="mt-5 flex flex-wrap gap-2">
           {item.tags.map((tag) => (
-            <li key={tag} className="border border-rule px-2.5 py-1 text-xs font-medium text-muted">
+            <li
+              key={tag}
+              className="rounded-full border border-line px-3 py-1 text-xs font-light text-mute"
+            >
               {tag}
             </li>
           ))}
@@ -64,7 +70,7 @@ export default function RealizationCard({
             <button
               type="button"
               onClick={() => onOpen(item)}
-              className="inline-flex items-center gap-2 border-b-2 border-accent py-2 text-sm font-semibold tracking-wide uppercase transition-colors duration-150 hover:text-accent"
+              className="eyebrow inline-flex items-center gap-2 rounded-full border border-chalk/35 px-5 py-2.5 text-chalk transition-colors duration-200 hover:bg-chalk/10"
             >
               {content.work.detailLabel}
               <span className="sr-only"> : {item.title}</span>
@@ -77,7 +83,7 @@ export default function RealizationCard({
               href={item.link.href}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 border-b-2 border-rule py-2 text-sm font-semibold tracking-wide uppercase transition-colors duration-150 hover:border-accent hover:text-accent"
+              className="eyebrow inline-flex items-center gap-2 border-b border-accent py-1 text-chalk transition-opacity duration-200 hover:opacity-70"
             >
               {item.link.label}
               <span className="sr-only"> : {item.title}, nouvel onglet</span>
@@ -87,7 +93,7 @@ export default function RealizationCard({
         </div>
 
         {/* Espace commentaire : ou, quand, pour qui. */}
-        <p className="mt-auto flex gap-3 border-l-2 border-accent pt-6 pl-3 text-xs leading-relaxed text-muted">
+        <p className="mt-auto flex gap-3 border-l-2 border-accent pt-6 pl-3 text-xs leading-relaxed font-light text-mute">
           <span className="sr-only">{content.work.commentLabel} : </span>
           {item.comment}
         </p>

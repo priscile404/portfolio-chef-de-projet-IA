@@ -10,8 +10,7 @@ interface MediaProps {
 }
 
 /**
- * Affiche l’image quand elle est fournie, sinon un encadre qui decrit le cadrage attendu.
- * Le placeholder est visible a l’ecran : il tient lieu de consigne de production.
+ * Affiche l'image quand elle est fournie, sinon un encadre qui decrit le cadrage attendu.
  */
 export default function Media({ slot, ratio = '16 / 10', className = '', eager = false }: MediaProps) {
   if (slot.src) {
@@ -22,7 +21,7 @@ export default function Media({ slot, ratio = '16 / 10', className = '', eager =
         loading={eager ? 'eager' : 'lazy'}
         decoding="async"
         style={{ aspectRatio: ratio }}
-        className={`w-full bg-shade object-cover ${className}`}
+        className={`w-full bg-panel object-cover ${className}`}
       />
     );
   }
@@ -30,10 +29,10 @@ export default function Media({ slot, ratio = '16 / 10', className = '', eager =
   return (
     <div
       style={{ aspectRatio: ratio }}
-      className={`hatch flex w-full flex-col justify-between gap-3 bg-shade p-3 md:p-4 ${className}`}
+      className={`flex w-full flex-col justify-between gap-3 bg-panel p-3 md:p-4 ${className}`}
     >
-      <span className="eyebrow w-fit bg-paper px-1.5 py-0.5 text-accent">Visuel à ajouter</span>
-      <span className="bg-paper px-1.5 py-0.5 text-xs leading-tight text-muted">{slot.framing}</span>
+      <span className="eyebrow w-fit bg-ink px-1.5 py-0.5 text-accent">Visuel à ajouter</span>
+      <span className="bg-ink px-1.5 py-0.5 text-xs leading-tight text-mute">{slot.framing}</span>
     </div>
   );
 }

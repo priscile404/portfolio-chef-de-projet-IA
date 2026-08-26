@@ -85,15 +85,18 @@ src/
 
 ## Choix techniques
 
-- React 19 + Vite + TypeScript + Tailwind v4. Aucune librairie d'animation.
-- Polices auto-hébergées (Archivo Variable pour le titrage, Inter Variable pour le corps) :
-  aucune requête vers un domaine tiers.
-- Apparitions au scroll via `IntersectionObserver`, survols sous 200 ms, tout est neutralisé
-  sous `prefers-reduced-motion: reduce`.
-- Vue détaillée en `<dialog>` natif : piège de focus, `Échap` et fond modal gérés par le
-  navigateur.
-- Pas de formulaire de contact : trois canaux directs et deux boutons. Un formulaire qui
-  se contente d'ouvrir la messagerie ajoute trois champs à remplir pour rien.
+- React 19 + Vite + TypeScript + Tailwind v4.
+- Theme sombre : fond #0C0C0C, texte #D7E2EA, un seul accent magenta.
+- Police Kanit auto-hebergee, **sous-ensemble latin uniquement** — charger tous les
+  sous-ensembles (thai, vietnamien) coutait 60 Ko pour rien.
+- La 3D est faite en CSS : perspective sur les cartes au survol, anneau en rotation
+  derriere le hero, halos radiaux. **Aucun fichier 3D, aucune librairie.**
+- Le bandeau defilant utilise des vignettes de 480 x 300 generees depuis
+   : 20 fichiers, 217 Ko au total. En pleine resolution le LCP
+  passait de 2,8 a 3,8 s.
+- Effet magnetique et revelation lettre par lettre ecrits a la main, neutralises sous
+   et sur les appareils tactiles.
+- Pas de formulaire de contact : trois canaux directs et deux boutons.
 
 ## Chiffres
 
@@ -124,8 +127,8 @@ Le « 10+ clients » de la carte freelance vient du CV, pas d'un décompte de fi
 
 ## Mesures
 
-Lighthouse sur le site en ligne : performance 99, accessibilité 100, bonnes pratiques 100,
-SEO 100. Aucun point ouvert, LCP à 1,7 s.
+Lighthouse sur le build de production : performance 91, accessibilite 100, bonnes
+pratiques 100, SEO 100. Aucun point ouvert, LCP a 2,8 s.
 
-Aucun débordement horizontal à 375, 768 et 1440 px. Hiérarchie de titres h1 → h4 sans saut,
-12 images pour 12 attributs alt.
+Aucun debordement horizontal a 375, 768 et 1440 px. Hierarchie de titres h1 vers h4
+sans saut.

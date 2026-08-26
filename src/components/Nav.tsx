@@ -41,11 +41,11 @@ export default function Nav() {
   const courante = useSectionCourante();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-ink bg-paper/95 backdrop-blur-[2px]">
+    <header className="sticky top-0 z-40 border-b border-line bg-ink/80 backdrop-blur-md">
       <div className="mx-auto flex h-14 w-full max-w-[1240px] items-center justify-between gap-4 px-5 md:px-8">
         <a
           href="#haut"
-          className="display text-lg transition-colors duration-150 hover:text-accent"
+          className="display text-lg text-chalk transition-colors duration-200 hover:opacity-70"
           aria-label={`${content.identity.monogram} — retour en haut de la page`}
         >
           {content.identity.monogram}
@@ -64,7 +64,7 @@ export default function Nav() {
                     href={`#${link.id}`}
                     aria-current={active ? 'true' : undefined}
                     className={`eyebrow inline-block border-b-2 py-3 transition-colors duration-150 hover:text-accent ${
-                      active ? 'border-accent text-ink' : 'border-transparent text-muted'
+                      active ? 'border-accent text-chalk' : 'border-transparent text-mute'
                     }`}
                   >
                     {link.label}
@@ -77,7 +77,7 @@ export default function Nav() {
 
         <a
           href={mailtoHref()}
-          className="eyebrow border border-ink bg-ink px-4 py-2 text-paper transition-colors duration-150 hover:border-accent hover:bg-accent"
+          className="btn-glow eyebrow rounded-full px-5 py-2.5 transition-transform duration-200 hover:scale-[1.03]"
         >
           {content.nav.cta}
         </a>

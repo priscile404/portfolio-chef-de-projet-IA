@@ -14,17 +14,17 @@ export default function Work() {
 
   return (
     <>
-      <section id="realisations" className="border-b border-ink">
+      <section id="realisations" className="relative">
         <div className="mx-auto w-full max-w-[1240px] px-5 py-16 md:px-8 md:py-24">
           <SectionHeader title={work.title} lead={work.lead} />
 
           {work.groups.map((group, groupIndex) => (
             <div key={group.id} id={group.id} className="mt-12 first:mt-10 md:mt-16">
-              <header className="flex flex-col gap-3 border-b-2 border-ink pb-3 md:flex-row md:items-end md:justify-between md:gap-8">
-                <h3 className="display text-2xl md:text-4xl">{group.title}</h3>
+              <header className="flex flex-col gap-3 border-b border-line pb-4 md:flex-row md:items-end md:justify-between md:gap-8">
+                <h3 className="display text-2xl text-chalk md:text-4xl">{group.title}</h3>
                 <ul className="flex flex-wrap gap-1.5 md:justify-end">
                   {group.tools.map((tool) => (
-                    <li key={tool} className="border border-rule px-2 py-1 text-xs font-medium text-muted">
+                    <li key={tool} className="rounded-full border border-line px-3 py-1 text-xs font-light text-mute">
                       {tool}
                     </li>
                   ))}
@@ -33,12 +33,12 @@ export default function Work() {
 
               {/* Le nombre de colonnes suit le nombre de cartes : aucune cellule vide. */}
               <ul
-                className={`mt-6 grid gap-px border border-ink bg-rule ${
+                className={`mt-8 grid gap-8 md:gap-10 ${
                   group.items.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'
                 }`}
               >
                 {group.items.map((item, i) => (
-                  <Reveal as="li" key={item.id} delay={i * 60} className="flex bg-paper">
+                  <Reveal as="li" key={item.id} delay={i * 60} className="flex">
                     <RealizationCard
                       item={item}
                       onOpen={setOpen}
@@ -53,18 +53,16 @@ export default function Work() {
         </div>
       </section>
 
-      <section id="projets" className="border-b border-ink bg-shade">
+      <section id="projets" className="relative">
         <div className="mx-auto w-full max-w-[1240px] px-5 py-16 md:px-8 md:py-24">
           <SectionHeader title={personal.title} lead={personal.lead} />
 
           {/* Une seule realisation : carte pleine largeur, visuel a gauche. */}
           <ul
-            className={`mt-10 grid gap-px border border-ink bg-rule ${
-              personal.items.length > 1 ? 'md:grid-cols-2' : ''
-            }`}
+            className={`mt-10 grid gap-8 ${personal.items.length > 1 ? 'md:grid-cols-2' : ''}`}
           >
             {personal.items.map((item, i) => (
-              <Reveal as="li" key={item.id} delay={i * 60} className="flex bg-paper">
+              <Reveal as="li" key={item.id} delay={i * 60} className="flex">
                 <RealizationCard item={item} onOpen={setOpen} horizontal={personal.items.length === 1} />
               </Reveal>
             ))}

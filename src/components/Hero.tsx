@@ -1,84 +1,126 @@
 import { content } from '../data/content';
 import { mailtoHref } from '../lib/mailto';
 import Icon from './Icon';
+import Magnet from './Magnet';
+import Reveal from './Reveal';
 
 const { identity, cv, availability } = content;
 
 export default function Hero() {
   return (
-    <section id="haut" className="relative border-b border-ink">
-      {/* Grille apparente, decorative, masquee sur mobile. */}
+    <section id="haut" className="relative flex min-h-screen flex-col overflow-x-clip">
+      {/* Profondeur : halos diffus et anneau en perspective, aucun fichier image. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 aurora" />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 hidden md:block grid-rules opacity-70"
-      />
-
-      <div className="relative mx-auto w-full max-w-[1240px] px-5 pt-16 pb-0 md:px-8 md:pt-24">
-        <div className={identity.portrait ? 'md:grid md:grid-cols-[minmax(0,1fr)_260px] md:gap-10' : ''}>
-          <div>
-            <p className="eyebrow text-accent">{identity.eyebrow}</p>
-
-            <h1 className="display mt-5 text-[clamp(2.75rem,12.5vw,8.5rem)]">
-              {identity.firstName}
-              <br />
-              {identity.lastName}
-            </h1>
-
-            <div className="mt-6 h-[6px] w-24 bg-accent md:mt-8" />
-
-            <p className="mt-6 max-w-[38ch] text-lg leading-snug font-medium text-balance md:text-2xl">
-              {identity.statement}
-            </p>
-          </div>
-
-          {identity.portrait ? (
-            /* Sur mobile le portrait reste une vignette : les deux boutons d’action
-               doivent rester atteignables sans avoir a le faire defiler. */
-            <div className="mt-10 w-40 sm:w-52 md:mt-0 md:w-full">
-              <img
-                src={identity.portrait.src}
-                alt={identity.portrait.alt}
-                width={560}
-                height={700}
-                fetchPriority="high"
-                decoding="async"
-                className="w-full border border-ink object-cover"
-                style={{ aspectRatio: '4 / 5' }}
-              />
-            </div>
-          ) : null}
-        </div>
-
-        <div className="mt-10 flex flex-col gap-3 pb-12 sm:flex-row sm:items-center md:mt-14">
-          <a
-            href={cv.href}
-            download
-            className="inline-flex items-center justify-center gap-2 border border-accent bg-accent px-6 py-4 text-sm font-semibold tracking-wide text-paper uppercase transition-colors duration-150 hover:border-ink hover:bg-ink"
-          >
-            <Icon name="download" />
-            {cv.label}
-          </a>
-          <a
-            href={mailtoHref()}
-            className="inline-flex items-center justify-center gap-2 border border-ink px-6 py-4 text-sm font-semibold tracking-wide uppercase transition-colors duration-150 hover:bg-ink hover:text-paper"
-          >
-            <Icon name="mail" />
-            M’écrire un mail
-          </a>
+        className="pointer-events-none absolute top-1/2 right-[8%] hidden h-[620px] w-[620px] -translate-y-1/2 lg:block"
+        style={{ perspective: '900px' }}
+      >
+        <div className="orbit absolute inset-0">
+          <div className="orbit-ring" />
+          <div className="orbit-ring" style={{ inset: '9%' }} />
+          <div className="orbit-ring" style={{ inset: '20%' }} />
         </div>
       </div>
 
-      {/* Bandeau de disponibilite : donnee factuelle. */}
-      <div className="border-t border-ink bg-shade">
-        <dl className="mx-auto grid w-full max-w-[1240px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="relative z-20 mx-auto flex w-full max-w-[1500px] flex-1 flex-col px-6 pt-12 md:px-10 md:pt-16">
+        <div className="grid flex-1 items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-6">
+          {/* Colonne texte */}
+          <div className="order-2 lg:order-1">
+            <div className="overflow-hidden">
+              <Reveal delay={120}>
+                <h1 className="display gradient-text text-[15vw] sm:text-[13vw] lg:text-[9.5vw]">
+                  {identity.firstName}
+                  <span className="block text-[6.4vw] sm:text-[5.4vw] lg:text-[3.9vw]">
+                    {identity.lastName}
+                  </span>
+                </h1>
+              </Reveal>
+            </div>
+
+            <Reveal delay={320}>
+              <p
+                className="mt-6 max-w-[24ch] leading-snug font-light tracking-wide text-chalk uppercase md:mt-8"
+                style={{ fontSize: 'clamp(0.8rem, 1.3vw, 1.4rem)' }}
+              >
+                {identity.eyebrow}
+              </p>
+            </Reveal>
+
+            <Reveal delay={460}>
+              <p className="mt-5 max-w-[46ch] text-[15px] leading-relaxed font-light text-chalk/70 md:text-base">
+                {identity.statement}
+              </p>
+            </Reveal>
+
+            <Reveal delay={580}>
+              <div className="mt-8 flex flex-wrap items-center gap-3 md:mt-10">
+                <a
+                  href={mailtoHref()}
+                  className="btn-glow eyebrow inline-flex items-center justify-center rounded-full px-9 py-3.5 transition-transform duration-200 hover:scale-[1.03] md:px-12 md:py-4"
+                >
+                  {content.nav.cta}
+                </a>
+                <a
+                  href={cv.href}
+                  download
+                  className="eyebrow inline-flex items-center gap-2 rounded-full border border-chalk/35 px-7 py-3.5 text-chalk transition-colors duration-200 hover:bg-chalk/10 md:px-9 md:py-4"
+                >
+                  <Icon name="download" />
+                  {cv.label}
+                </a>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Portrait : cadre arrondi, lueur derriere, fondu vers le noir en bas. */}
+          <Reveal delay={700} className="order-1 justify-self-center lg:order-2 lg:justify-self-end">
+            <div className="relative w-[240px] sm:w-[300px] lg:w-[400px]">
+              <div
+                aria-hidden="true"
+                className="breathe absolute -inset-10 rounded-full blur-3xl"
+                style={{
+                  background: 'radial-gradient(circle, rgb(182 0 168 / 0.32), transparent 70%)',
+                }}
+              />
+              <Magnet padding={140} strength={4} className="relative">
+                <div className="relative overflow-hidden rounded-[2rem] border border-chalk/15">
+                  <img
+                    src={identity.portrait?.src}
+                    alt={identity.portrait?.alt ?? ''}
+                    width={560}
+                    height={700}
+                    fetchPriority="high"
+                    decoding="async"
+                    className="w-full object-cover"
+                    style={{ aspectRatio: '4 / 5' }}
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0"
+                    style={{
+                      background:
+                        'linear-gradient(180deg, rgb(12 12 12 / 0) 55%, rgb(12 12 12 / 0.55) 100%)',
+                    }}
+                  />
+                </div>
+              </Magnet>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+
+      {/* Bandeau de disponibilite. */}
+      <div className="relative z-20 border-t border-line">
+        <dl className="mx-auto grid w-full max-w-[1500px] grid-cols-2 lg:grid-cols-4">
           {availability.map((item) => (
             <div
               key={item.label}
-              className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 border-b border-rule px-5 py-4 last:border-b-0 md:px-8 lg:border-r lg:border-b-0 lg:last:border-r-0"
+              className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 border-b border-line px-6 py-4 last:border-b-0 md:px-10 lg:border-r lg:border-b-0 lg:last:border-r-0"
             >
               <Icon name={item.icon} className="row-span-2 mt-1 h-4 w-4 shrink-0 text-accent" />
-              <dt className="eyebrow text-muted">{item.label}</dt>
-              <dd className="mt-1 text-sm leading-snug font-medium">{item.value}</dd>
+              <dt className="eyebrow text-mute">{item.label}</dt>
+              <dd className="mt-1 text-sm leading-snug font-light text-chalk">{item.value}</dd>
             </div>
           ))}
         </dl>
