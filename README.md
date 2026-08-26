@@ -91,11 +91,11 @@ src/
   sous-ensembles (thai, vietnamien) coutait 60 Ko pour rien.
 - La 3D est faite en CSS : perspective sur les cartes au survol, anneau en rotation
   derriere le hero, halos radiaux. **Aucun fichier 3D, aucune librairie.**
-- Le bandeau defilant utilise des vignettes de 480 x 300 generees depuis
-   : 20 fichiers, 217 Ko au total. En pleine resolution le LCP
-  passait de 2,8 a 3,8 s.
-- Effet magnetique et revelation lettre par lettre ecrits a la main, neutralises sous
-   et sur les appareils tactiles.
+- Le bandeau défilant utilise des vignettes de 480 × 300 générées depuis
+  `public/captures` vers `public/bandeau` : 20 fichiers, 217 Ko au total. En pleine
+  résolution le LCP passait de 2,8 à 3,8 s.
+- Effet magnétique et révélation lettre par lettre écrits à la main, neutralisés sous
+  `prefers-reduced-motion` et sur les appareils tactiles.
 - Pas de formulaire de contact : trois canaux directs et deux boutons.
 
 ## Chiffres
