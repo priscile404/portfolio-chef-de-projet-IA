@@ -5,18 +5,18 @@
     <line x1="600.5" y1="0" x2="600.5" y2="630"/>
     <line x1="900.5" y1="0" x2="900.5" y2="630"/>
   </g>
-  <rect x="0" y="0" width="1200" height="14" fill="#c1300f"/>
+  <rect x="0" y="0" width="1200" height="14" fill="#a81a9b"/>
 
   <g font-family="Arial Narrow, Arial, Helvetica, sans-serif" fill="#14130f">
-    <text x="72" y="132" font-size="24" font-weight="bold" letter-spacing="6" fill="#c1300f">MARKETING DIGITAL · CONTENU · SEO</text>
+    <text x="72" y="132" font-size="24" font-weight="bold" letter-spacing="6" fill="#a81a9b">MARKETING DIGITAL · CONTENU · SEO · AUTOMATISATION</text>
     <text x="72" y="268" font-size="118" font-weight="bold" letter-spacing="-1">PRISCILE</text>
     <text x="72" y="380" font-size="118" font-weight="bold" letter-spacing="-1">NGANDJUI DONFACK</text>
   </g>
 
-  <rect x="72" y="418" width="120" height="8" fill="#c1300f"/>
+  <rect x="72" y="418" width="120" height="8" fill="#a81a9b"/>
 
-  <text x="72" y="482" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="600" fill="#14130f">Je produis les contenus et je construis les outils qui les produisent.</text>
+  <text x="72" y="482" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="600" fill="#14130f">Je pilote des projets marketing, et j’automatise ce qui se répète.</text>
 
   <line x1="72" y1="524" x2="1128" y2="524" stroke="#14130f" stroke-width="2"/>
-  <text x="72" y="570" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#5a554b">Alternance · Septembre 2026 · 12 mois · Île-de-France</text>
+  <text x="72" y="570" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#5a554b">Alternance · Septembre 2026 · 12 mois · France entière</text>
 </svg>

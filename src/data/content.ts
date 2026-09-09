@@ -6,7 +6,8 @@ import type { SiteContent } from './types';
  *
  * STRUCTURE
  * Pas de frise d’experiences : la page ne montre que des realisations, classees par
- * competence (SEO, IA, design, contenu / video), puis les projets personnels.
+ * competence (contenu, SEO, design, automatisation), puis les projets personnels.
+ * L’ordre suit l’intitule du poste : le marketing d’abord, l’automatisation ensuite.
  * L’employeur et la periode apparaissent dans l’espace commentaire, en bas de chaque carte.
  *
  * REGLE D’ECRITURE
@@ -30,9 +31,9 @@ export const content: SiteContent = {
     firstName: 'Priscile',
     lastName: 'Ngandjui Donfack',
     monogram: 'PND',
-    eyebrow: 'Chef de projet IA',
+    eyebrow: 'Chef de projet marketing et automatisation',
     statement:
-      "Je pilote des projets IA du cadrage à la mise en production, jusqu’à l’outil que l’équipe utilise vraiment.",
+      "Je pilote des projets marketing digital du cadrage à la mise en ligne, et j’automatise ce qui se répète.",
     portrait: {
       src: '/portrait-priscile-ngandjui-donfack.jpg',
       alt: 'Portrait de Priscile Ngandjui Donfack',
@@ -57,7 +58,7 @@ export const content: SiteContent = {
 
   mail: {
     address: 'priscillengandjui@gmail.com',
-    subject: 'Alternance chef de projet IA — septembre 2026',
+    subject: 'Alternance chef de projet marketing et automatisation — septembre 2026',
     body: "Bonjour Priscile,\n\nJe vous contacte au sujet d’une alternance à partir de septembre 2026.\n\n",
   },
 
@@ -94,280 +95,6 @@ export const content: SiteContent = {
     closeLabel: 'Fermer',
     commentLabel: 'Commentaire',
     groups: [
-      {
-        id: 'ia',
-        title: 'IA & automatisation',
-        tools: ['API Claude', 'n8n', 'Node.js', 'Make', 'Lovable', 'Supabase', 'ChatGPT', 'ElevenLabs', 'Kling'],
-        items: [
-          {
-            id: 'app-seo-geo',
-            title: 'Application de génération de contenu SEO et d’audit GEO',
-            image: {
-              src: '/captures/ia-01-app.png',
-              alt: "Écran principal de l’application SEO/GEO RénovtaLoc, onglet générateur d’articles",
-              framing:
-                "captures/ia-01-app.png — écran principal de l’application, format 16/10, 1600 px de large",
-            },
-            result: "Outil interne remis à l’équipe, mis en production le 3 août 2026.",
-            comment: 'RénovtaLoc · 2026 · conçue et développée seule, mise en production le 3 août',
-            tags: ['Node.js', 'API Claude', 'SEO', 'GEO / AEO'],
-            metrics: [
-              { value: '17', label: 'articles générés et enregistrés' },
-              { value: '8', label: 'axes d’audit notés avec preuve' },
-              { value: '4', label: 'moteurs génératifs interrogés' },
-            ],
-            detail: {
-              intro:
-                "Un outil interne, pas une démonstration : il a été déployé en ligne et sert à produire et auditer les contenus avant publication.",
-              context:
-                'La production des pages reposait sur un travail manuel, sans méthode partagée ni contrôle avant publication.',
-              action:
-                "J’ai conçu et développé une application Node.js en trois modules — générateur d’articles, audit d’article GEO, audit de site GEO — déployée en ligne et utilisée par l’équipe.",
-              blocks: [
-                {
-                  heading: 'La génération',
-                  body: "À partir d’un mot-clé : titre, méta-description, hiérarchie des titres, mots-clés secondaires, et maillage interne construit sur les vraies URL du site lues dans le sitemap. Les pages déjà publiées sont analysées avant chaque génération pour éviter les doublons. Un panneau distingue les mots-clés recherchés effectivement présents dans le texte de ceux qui manquent.",
-                },
-                {
-                  heading: 'L’audit GEO',
-                  body: "Huit axes notés sur 5 — visibilité IA, citabilité, clarté sémantique, couverture d’intention, entités et preuves, structure et balisage, autorité, benchmark concurrentiel — plus cinq vérifications déterministes (structure extractible, données structurées, FAQ, sources, fraîcheur). Chaque note porte une preuve : une valeur mesurée ou une citation vérifiée, jamais un avis.",
-                },
-                {
-                  heading: 'Les limites assumées',
-                  body: "L’application ne publie rien seule et l’audit signale les manques sans les corriger. Le choix des sujets et la relecture restent humains.",
-                },
-              ],
-              screenshots: [
-                {
-                  src: '/captures/ia-01-generation.png',
-                  alt: "Article généré : panneau des mots-clés SEO utilisés et corps de l’article",
-                  framing:
-                    "captures/ia-01-generation.png — article généré, panneau mots-clés et corps de l’article visibles, 1600 px.",
-                },
-                {
-                  src: '/captures/ia-01-audit-formulaire.png',
-                  alt: "Module d’audit GEO de l’application, avant lancement",
-                  framing:
-                    "captures/ia-01-audit-formulaire.png — module d’audit d’article GEO, 1600 px.",
-                },
-              ],
-            },
-          },
-          {
-            id: 'chaine-editoriale',
-            title: 'Chaîne éditoriale semi-automatisée',
-            image: {
-              src: '/captures/ia-02-canevas.png',
-              alt: 'Canevas n8n de la chaîne éditoriale : les trois sous-workflows',
-              framing:
-                'captures/ia-02-canevas.png — canevas n8n entier, les 3 sous-workflows visibles, 1600 px.',
-            },
-            result:
-              'Aucune production de contenu ne démarre sans un clic de validation humaine.',
-            comment: 'Projet interne · 2026 · workflow n8n de 34 nœuds, en production',
-            tags: ['n8n', 'Perplexity', 'GPT-5', 'Google Sheets', 'Gmail'],
-            metrics: [
-              { value: '3', label: 'sous-workflows enchaînés' },
-              { value: '5', label: 'canaux déclinés depuis un contenu maître' },
-              { value: '0', label: 'publication sans validation humaine' },
-            ],
-            detail: {
-              intro:
-                "Une chaîne qui propose, attend une décision, puis produit. La validation humaine n’est pas une option de confort : c’est une étape du workflow, sans laquelle rien ne se déclenche.",
-              context:
-                "Trouver des sujets, les évaluer, puis produire les déclinaisons par canal prenait un temps disproportionné par rapport au résultat publié.",
-              action:
-                "J’ai monté un workflow n8n de 34 nœuds en trois étages : recherche et scoring des opportunités, décision humaine par clic, puis production de contenu déclinée par canal.",
-              blocks: [
-                {
-                  heading: 'Étage 1 — proposer',
-                  body: "Un sujet entre par un formulaire ou par la planification. Une recherche Perplexity sourcée alimente un scoring GPT-5 nano. L’opportunité est écrite dans un Google Sheets avec un jeton, puis un mail part avec deux liens : valider ou rejeter.",
-                },
-                {
-                  heading: 'Étage 2 — décider',
-                  body: "Le clic tombe sur un webhook qui relit la ligne et vérifie le jeton. Un lien déjà utilisé renvoie « ce lien n’est plus valide » au lieu de rejouer l’action : chaque décision ne peut être prise qu’une fois. Un rejet met à jour le statut et s’arrête là.",
-                },
-                {
-                  heading: 'Étage 3 — produire',
-                  body: "Seule la branche « valider » déclenche la production : un contenu maître GPT-5, puis les déclinaisons LinkedIn, TikTok, YouTube, newsletter et Instagram, écrites dans la feuille de sortie. Le navigateur répond « contenu en cours de génération ».",
-                },
-                {
-                  heading: 'Ce qui a cassé',
-                  body: "Le pipeline a échoué dix nuits d’affilée avant d’être corrigé le 16 août 2026. Depuis, quatre exécutions consécutives ont abouti sans erreur. C’est le genre de détail qu’on ne voit pas sur une démo : un workflow qui tourne, ça se surveille et ça se répare.",
-                },
-              ],
-              screenshots: [
-                {
-                  src: '/captures/ia-02-sheet.png',
-                  alt: 'Feuille Google Sheets de suivi des opportunités de contenu',
-                  framing:
-                    'captures/ia-02-sheet.png — Google Sheets, colonnes sujet, score, statut et déclinaisons par canal lisibles, 1600 px.',
-                },
-              ],
-            },
-          },
-          {
-            id: 'veille-quotidienne',
-            title: 'Veille quotidienne automatisée',
-            image: {
-              src: '/captures/ia-03-veille-canevas.png',
-              alt: 'Canevas n8n du workflow de veille quotidienne',
-              framing:
-                'captures/ia-03-veille-canevas.png — canevas n8n entier, les 6 nœuds et leurs libellés, 1600 px.',
-            },
-            result:
-              'Un brief de veille sourcé, livré chaque matin à 06h30 sans aucune intervention.',
-            comment: 'Projet interne · 2026 · workflow n8n mis en service le 16 août',
-            tags: ['n8n', 'Perplexity', 'Gmail', 'Automatisation'],
-            metrics: [
-              { value: '06h30', label: 'brief livré chaque matin' },
-              { value: '2', label: 'radars sourcés en parallèle' },
-              { value: '0', label: 'publication automatique : décision humaine' },
-            ],
-            detail: {
-              intro:
-                "L’automatisation sert la cadence. Elle ne choisit pas les sujets et ne publie rien : elle livre une matière première sourcée, chaque matin, à heure fixe.",
-              context:
-                'La veille arrivait de sources dispersées et dépendait entièrement du temps disponible pour la faire.',
-              action:
-                "J’ai monté un workflow n8n déclenché chaque matin à 06h30 : deux radars Perplexity en parallèle, fusion des sorties, mise en forme, envoi du brief par Gmail.",
-              blocks: [
-                {
-                  heading: 'Deux radars, deux périmètres',
-                  body: "Le premier suit les sorties produit IA et automatisation sur 48 heures. Le second cherche des descriptions de processus cassés en TPE, PME et agences, avec pour chacun le processus actuel étape par étape et les étapes automatisables. Les deux tournent en parallèle et sont fusionnés avant mise en forme.",
-                },
-                {
-                  heading: 'La règle de source',
-                  body: "Les prompts imposent la source primaire : page officielle de l’éditeur, changelog, dépôt, ou enquête avec méthodologie publiée. Les agrégateurs, newsletters tierces, fils X et vidéos sont explicitement refusés comme source finale. Une annonce qu’on ne peut pas rattacher à sa page officielle est écartée plutôt que reprise.",
-                },
-                {
-                  heading: 'Quand ça échoue',
-                  body: "Le code de mise en forme détecte une sortie vide ou trop courte et place une alerte en tête du brief plutôt que d’envoyer un mail d’apparence normale. Sur les exécutions réalisées à ce jour, toutes ont abouti à un envoi.",
-                },
-              ],
-              screenshots: [
-                {
-                  src: '/captures/ia-03-veille-mail.png',
-                  alt: 'Brief de veille ouvert dans la boîte mail, reçu à 06h31',
-                  framing:
-                    'captures/ia-03-veille-mail.png — brief ouvert, expéditeur, heure et premières entrées sourcées visibles.',
-                },
-                {
-                  src: '/captures/ia-03-veille-boite.png',
-                  alt: 'Les briefs de veille reçus jour après jour',
-                  framing:
-                    'captures/ia-03-veille-boite.png — liste des briefs « Veille COS du jour », dates lisibles.',
-                },
-              ],
-            },
-          },
-        ],
-      },
-      {
-        id: 'seo',
-        title: 'SEO & création de site web',
-        tools: [
-          'SEO on page',
-          'SEO sémantique',
-          'GEO / AEO',
-          'Maillage interne',
-          'WordPress',
-          'Zoho Sites',
-          'Google Analytics',
-          'Excel avancé',
-        ],
-        items: [
-          {
-            id: 'site-vitrine-poribal',
-            title: 'Site vitrine et identité visuelle',
-            image: {
-              src: '/captures/web-01-poribal.jpg',
-              alt: 'Page d’accueil du site Poribal Group, en ligne',
-              framing:
-                'captures/web-01-poribal.jpg — page d’accueil du site en ligne, format 16/10, 1280 px de large',
-            },
-            result: 'Site vitrine en ligne, avec son identité visuelle et ses métadonnées rédigées page par page.',
-            comment: 'Poribal Group · mai – août 2025 · poribalgroup.fr, construit sous Zoho Sites',
-            tags: ['Site vitrine', 'Zoho Sites', 'Identité visuelle', 'SEO on page'],
-            link: { href: 'https://www.poribalgroup.fr/', label: 'Voir le site' },
-            metrics: [
-              { value: '7', label: 'pages livrées, title et méta rédigés' },
-            ],
-            detail: {
-              intro:
-                "Un site qui devait exister et être trouvé : la création graphique et le référencement ont été traités ensemble, pas l’un après l’autre.",
-              context:
-                "L’entreprise n’avait pas de site : aucune vitrine, aucune présence dans les résultats de recherche.",
-              action:
-                "J’ai créé l’identité visuelle et le site vitrine, puis rédigé le title et la méta-description de chacune des sept pages autour d’un positionnement unique : « accompagnement immobilier ».",
-              blocks: [
-                {
-                  heading: 'Un positionnement, sept pages',
-                  body: "Accueil, à propos, services, projets, contact, blog, politique de confidentialité. Chaque page porte le même angle — l’accompagnement immobilier clé en main — décliné selon son intention : découvrir, comprendre l’approche, comparer les offres, voir les réalisations, prendre contact.",
-                },
-                {
-                  heading: 'Le graphique et le SEO ensemble',
-                  body: "Logo, palette et gabarits ont été conçus en même temps que la structure des pages et les métadonnées, pour éviter le scénario classique du site refait une deuxième fois parce qu’il n’a pas été pensé pour être trouvé.",
-                },
-                {
-                  heading: 'Construit sous Zoho Sites',
-                  body: "Le site est monté sous Zoho Sites, l’outil déjà en place chez le client. Travailler dans son environnement plutôt que d’imposer le mien lui laisse la main sur ses pages une fois la mission finie — et la contrainte de l’éditeur a été absorbée par les gabarits plutôt que subie page après page.",
-                },
-              ],
-              screenshots: [],
-            },
-          },
-          {
-            id: 'seo-dupond',
-            title: 'Optimisation SEO de 10 pages',
-            image: {
-              src: '/captures/web-02-dd-motscles.png',
-              alt: 'Tableau de mots-clés : volume, concurrence, intention et page cible sur duponddurand.com',
-              framing:
-                'captures/web-02-dd-motscles.png — tableau de mots-clés, colonne des pages cibles visible.',
-            },
-            result:
-              'Dix mots-clés qualifiés par volume et concurrence, puis affectés page par page.',
-            comment: 'Dupond & Durand · février – avril 2025 · maroquinerie en ligne',
-            tags: ['SEO on page', 'Mots-clés', 'Maillage interne', 'Reporting'],
-            metrics: [
-              { value: '40+', label: 'pages auditées, title et méta relevés' },
-              { value: '10', label: 'pages réécrites et optimisées' },
-              { value: '1 200', label: 'recherches mensuelles sur le mot-clé principal' },
-            ],
-            detail: {
-              intro:
-                "Un catalogue de maroquinerie en ligne : beaucoup de pages produits, peu de trafic. Le travail a consisté à décider quelle page devait répondre à quelle recherche.",
-              context:
-                'Les pages catégories se faisaient concurrence entre elles sur des requêtes proches, sans page clairement désignée pour chacune.',
-              action:
-                "J’ai construit un tableau de mots-clés — volume, concurrence, intention de recherche, page cible — puis réécrit le title, la méta-description et le maillage interne de dix pages.",
-              blocks: [
-                {
-                  heading: 'Une requête, une page',
-                  body: "Chaque mot-clé a été relié à une seule page cible, avec la question réelle que se pose la personne qui cherche et l’action attendue derrière. « Grand sac bandoulière femme », 1 200 recherches par mois, est le volume le plus fort du lot.",
-                },
-                {
-                  heading: 'Le tri par concurrence',
-                  body: "Chaque mot-clé est noté de 0 à 10 en concurrence : les requêtes à forte demande et faible concurrence passent en priorité, celles jugées trop disputées sont écartées ou reportées. « Sac à main croco », noté 0, porte la mention « doit être retravaillé » plutôt que d’être présenté comme un acquis.",
-                },
-                {
-                  heading: 'Ce qu’il en reste',
-                  body: "La boutique n’est plus en ligne aujourd’hui : le domaine ne résout plus. Les livrables de la mission — tableau de mots-clés, titles et méta-descriptions rédigés — restent consultables, mais les pages elles-mêmes ne sont plus vérifiables. Autant le dire plutôt que de laisser croire à un lien mort.",
-                },
-              ],
-              screenshots: [
-                {
-                  src: '/captures/web-02-dd-audit.png',
-                  alt: 'Inventaire des title et méta-descriptions du catalogue, avec la colonne « à refaire »',
-                  framing:
-                    'captures/web-02-dd-audit.png — inventaire des balises du catalogue, colonne « à refaire » visible.',
-                },
-              ],
-            },
-          },
-        ],
-      },
       {
         id: 'contenu-video',
         title: 'Contenu, photo & vidéo',
@@ -504,6 +231,111 @@ export const content: SiteContent = {
                   alt: 'Document de stratégie social media : piliers de contenu et formats par plateforme',
                   framing:
                     'captures/contenu-02-strategie.png — page du document de stratégie, piliers de contenu visibles.',
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        id: 'seo',
+        title: 'SEO & création de site web',
+        tools: [
+          'SEO on page',
+          'SEO sémantique',
+          'GEO / AEO',
+          'Maillage interne',
+          'WordPress',
+          'Zoho Sites',
+          'Google Analytics',
+          'Excel avancé',
+        ],
+        items: [
+          {
+            id: 'site-vitrine-poribal',
+            title: 'Site vitrine et identité visuelle',
+            image: {
+              src: '/captures/web-01-poribal.jpg',
+              alt: 'Page d’accueil du site Poribal Group, en ligne',
+              framing:
+                'captures/web-01-poribal.jpg — page d’accueil du site en ligne, format 16/10, 1280 px de large',
+            },
+            result: 'Site vitrine en ligne, avec son identité visuelle et ses métadonnées rédigées page par page.',
+            comment: 'Poribal Group · mai – août 2025 · poribalgroup.fr, construit sous Zoho Sites',
+            tags: ['Site vitrine', 'Zoho Sites', 'Identité visuelle', 'SEO on page'],
+            link: { href: 'https://www.poribalgroup.fr/', label: 'Voir le site' },
+            metrics: [
+              { value: '7', label: 'pages livrées, title et méta rédigés' },
+            ],
+            detail: {
+              intro:
+                "Un site qui devait exister et être trouvé : la création graphique et le référencement ont été traités ensemble, pas l’un après l’autre.",
+              context:
+                "L’entreprise n’avait pas de site : aucune vitrine, aucune présence dans les résultats de recherche.",
+              action:
+                "J’ai créé l’identité visuelle et le site vitrine, puis rédigé le title et la méta-description de chacune des sept pages autour d’un positionnement unique : « accompagnement immobilier ».",
+              blocks: [
+                {
+                  heading: 'Un positionnement, sept pages',
+                  body: "Accueil, à propos, services, projets, contact, blog, politique de confidentialité. Chaque page porte le même angle — l’accompagnement immobilier clé en main — décliné selon son intention : découvrir, comprendre l’approche, comparer les offres, voir les réalisations, prendre contact.",
+                },
+                {
+                  heading: 'Le graphique et le SEO ensemble',
+                  body: "Logo, palette et gabarits ont été conçus en même temps que la structure des pages et les métadonnées, pour éviter le scénario classique du site refait une deuxième fois parce qu’il n’a pas été pensé pour être trouvé.",
+                },
+                {
+                  heading: 'Construit sous Zoho Sites',
+                  body: "Le site est monté sous Zoho Sites, l’outil déjà en place chez le client. Travailler dans son environnement plutôt que d’imposer le mien lui laisse la main sur ses pages une fois la mission finie — et la contrainte de l’éditeur a été absorbée par les gabarits plutôt que subie page après page.",
+                },
+              ],
+              screenshots: [],
+            },
+          },
+          {
+            id: 'seo-dupond',
+            title: 'Optimisation SEO de 10 pages',
+            image: {
+              src: '/captures/web-02-dd-motscles.png',
+              alt: 'Tableau de mots-clés : volume, concurrence, intention et page cible sur duponddurand.com',
+              framing:
+                'captures/web-02-dd-motscles.png — tableau de mots-clés, colonne des pages cibles visible.',
+            },
+            result:
+              'Dix mots-clés qualifiés par volume et concurrence, puis affectés page par page.',
+            comment: 'Dupond & Durand · février – avril 2025 · maroquinerie en ligne',
+            tags: ['SEO on page', 'Mots-clés', 'Maillage interne', 'Reporting'],
+            metrics: [
+              { value: '40+', label: 'pages auditées, title et méta relevés' },
+              { value: '10', label: 'pages réécrites et optimisées' },
+              { value: '1 200', label: 'recherches mensuelles sur le mot-clé principal' },
+            ],
+            detail: {
+              intro:
+                "Un catalogue de maroquinerie en ligne : beaucoup de pages produits, peu de trafic. Le travail a consisté à décider quelle page devait répondre à quelle recherche.",
+              context:
+                'Les pages catégories se faisaient concurrence entre elles sur des requêtes proches, sans page clairement désignée pour chacune.',
+              action:
+                "J’ai construit un tableau de mots-clés — volume, concurrence, intention de recherche, page cible — puis réécrit le title, la méta-description et le maillage interne de dix pages.",
+              blocks: [
+                {
+                  heading: 'Une requête, une page',
+                  body: "Chaque mot-clé a été relié à une seule page cible, avec la question réelle que se pose la personne qui cherche et l’action attendue derrière. « Grand sac bandoulière femme », 1 200 recherches par mois, est le volume le plus fort du lot.",
+                },
+                {
+                  heading: 'Le tri par concurrence',
+                  body: "Chaque mot-clé est noté de 0 à 10 en concurrence : les requêtes à forte demande et faible concurrence passent en priorité, celles jugées trop disputées sont écartées ou reportées. « Sac à main croco », noté 0, porte la mention « doit être retravaillé » plutôt que d’être présenté comme un acquis.",
+                },
+                {
+                  heading: 'Ce qu’il en reste',
+                  body: "La boutique n’est plus en ligne aujourd’hui : le domaine ne résout plus. Les livrables de la mission — tableau de mots-clés, titles et méta-descriptions rédigés — restent consultables, mais les pages elles-mêmes ne sont plus vérifiables. Autant le dire plutôt que de laisser croire à un lien mort.",
+                },
+              ],
+              screenshots: [
+                {
+                  src: '/captures/web-02-dd-audit.png',
+                  alt: 'Inventaire des title et méta-descriptions du catalogue, avec la colonne « à refaire »',
+                  framing:
+                    'captures/web-02-dd-audit.png — inventaire des balises du catalogue, colonne « à refaire » visible.',
                 },
               ],
             },
@@ -679,6 +511,175 @@ export const content: SiteContent = {
           },
         ],
       },
+      {
+        id: 'ia',
+        title: 'Automatisation & IA',
+        tools: ['API Claude', 'n8n', 'Node.js', 'Make', 'Lovable', 'Supabase', 'ChatGPT', 'ElevenLabs', 'Kling'],
+        items: [
+          {
+            id: 'app-seo-geo',
+            title: 'Application de génération de contenu SEO et d’audit GEO',
+            image: {
+              src: '/captures/ia-01-app.png',
+              alt: "Écran principal de l’application SEO/GEO RénovtaLoc, onglet générateur d’articles",
+              framing:
+                "captures/ia-01-app.png — écran principal de l’application, format 16/10, 1600 px de large",
+            },
+            result: "Outil interne remis à l’équipe, mis en production le 3 août 2026.",
+            comment: 'RénovtaLoc · 2026 · conçue et développée seule, mise en production le 3 août',
+            tags: ['Node.js', 'API Claude', 'SEO', 'GEO / AEO'],
+            metrics: [
+              { value: '17', label: 'articles générés et enregistrés' },
+              { value: '8', label: 'axes d’audit notés avec preuve' },
+              { value: '4', label: 'moteurs génératifs interrogés' },
+            ],
+            detail: {
+              intro:
+                "Un outil interne, pas une démonstration : il a été déployé en ligne et sert à produire et auditer les contenus avant publication.",
+              context:
+                'La production des pages reposait sur un travail manuel, sans méthode partagée ni contrôle avant publication.',
+              action:
+                "J’ai conçu et développé une application Node.js en trois modules — générateur d’articles, audit d’article GEO, audit de site GEO — déployée en ligne et utilisée par l’équipe.",
+              blocks: [
+                {
+                  heading: 'La génération',
+                  body: "À partir d’un mot-clé : titre, méta-description, hiérarchie des titres, mots-clés secondaires, et maillage interne construit sur les vraies URL du site lues dans le sitemap. Les pages déjà publiées sont analysées avant chaque génération pour éviter les doublons. Un panneau distingue les mots-clés recherchés effectivement présents dans le texte de ceux qui manquent.",
+                },
+                {
+                  heading: 'L’audit GEO',
+                  body: "Huit axes notés sur 5 — visibilité IA, citabilité, clarté sémantique, couverture d’intention, entités et preuves, structure et balisage, autorité, benchmark concurrentiel — plus cinq vérifications déterministes (structure extractible, données structurées, FAQ, sources, fraîcheur). Chaque note porte une preuve : une valeur mesurée ou une citation vérifiée, jamais un avis.",
+                },
+                {
+                  heading: 'Les limites assumées',
+                  body: "L’application ne publie rien seule et l’audit signale les manques sans les corriger. Le choix des sujets et la relecture restent humains.",
+                },
+              ],
+              screenshots: [
+                {
+                  src: '/captures/ia-01-generation.png',
+                  alt: "Article généré : panneau des mots-clés SEO utilisés et corps de l’article",
+                  framing:
+                    "captures/ia-01-generation.png — article généré, panneau mots-clés et corps de l’article visibles, 1600 px.",
+                },
+                {
+                  src: '/captures/ia-01-audit-formulaire.png',
+                  alt: "Module d’audit GEO de l’application, avant lancement",
+                  framing:
+                    "captures/ia-01-audit-formulaire.png — module d’audit d’article GEO, 1600 px.",
+                },
+              ],
+            },
+          },
+          {
+            id: 'chaine-editoriale',
+            title: 'Chaîne éditoriale semi-automatisée',
+            image: {
+              src: '/captures/ia-02-canevas.png',
+              alt: 'Canevas n8n de la chaîne éditoriale : les trois sous-workflows',
+              framing:
+                'captures/ia-02-canevas.png — canevas n8n entier, les 3 sous-workflows visibles, 1600 px.',
+            },
+            result:
+              'Aucune production de contenu ne démarre sans un clic de validation humaine.',
+            comment: 'Projet interne · 2026 · workflow n8n de 34 nœuds, en production',
+            tags: ['n8n', 'Perplexity', 'GPT-5', 'Google Sheets', 'Gmail'],
+            metrics: [
+              { value: '3', label: 'sous-workflows enchaînés' },
+              { value: '5', label: 'canaux déclinés depuis un contenu maître' },
+              { value: '0', label: 'publication sans validation humaine' },
+            ],
+            detail: {
+              intro:
+                "Une chaîne qui propose, attend une décision, puis produit. La validation humaine n’est pas une option de confort : c’est une étape du workflow, sans laquelle rien ne se déclenche.",
+              context:
+                "Trouver des sujets, les évaluer, puis produire les déclinaisons par canal prenait un temps disproportionné par rapport au résultat publié.",
+              action:
+                "J’ai monté un workflow n8n de 34 nœuds en trois étages : recherche et scoring des opportunités, décision humaine par clic, puis production de contenu déclinée par canal.",
+              blocks: [
+                {
+                  heading: 'Étage 1 — proposer',
+                  body: "Un sujet entre par un formulaire ou par la planification. Une recherche Perplexity sourcée alimente un scoring GPT-5 nano. L’opportunité est écrite dans un Google Sheets avec un jeton, puis un mail part avec deux liens : valider ou rejeter.",
+                },
+                {
+                  heading: 'Étage 2 — décider',
+                  body: "Le clic tombe sur un webhook qui relit la ligne et vérifie le jeton. Un lien déjà utilisé renvoie « ce lien n’est plus valide » au lieu de rejouer l’action : chaque décision ne peut être prise qu’une fois. Un rejet met à jour le statut et s’arrête là.",
+                },
+                {
+                  heading: 'Étage 3 — produire',
+                  body: "Seule la branche « valider » déclenche la production : un contenu maître GPT-5, puis les déclinaisons LinkedIn, TikTok, YouTube, newsletter et Instagram, écrites dans la feuille de sortie. Le navigateur répond « contenu en cours de génération ».",
+                },
+                {
+                  heading: 'Ce qui a cassé',
+                  body: "Le pipeline a échoué dix nuits d’affilée avant d’être corrigé le 16 août 2026. Depuis, quatre exécutions consécutives ont abouti sans erreur. C’est le genre de détail qu’on ne voit pas sur une démo : un workflow qui tourne, ça se surveille et ça se répare.",
+                },
+              ],
+              screenshots: [
+                {
+                  src: '/captures/ia-02-sheet.png',
+                  alt: 'Feuille Google Sheets de suivi des opportunités de contenu',
+                  framing:
+                    'captures/ia-02-sheet.png — Google Sheets, colonnes sujet, score, statut et déclinaisons par canal lisibles, 1600 px.',
+                },
+              ],
+            },
+          },
+          {
+            id: 'veille-quotidienne',
+            title: 'Veille quotidienne automatisée',
+            image: {
+              src: '/captures/ia-03-veille-canevas.png',
+              alt: 'Canevas n8n du workflow de veille quotidienne',
+              framing:
+                'captures/ia-03-veille-canevas.png — canevas n8n entier, les 6 nœuds et leurs libellés, 1600 px.',
+            },
+            result:
+              'Un brief de veille sourcé, livré chaque matin à 06h30 sans aucune intervention.',
+            comment: 'Projet interne · 2026 · workflow n8n mis en service le 16 août',
+            tags: ['n8n', 'Perplexity', 'Gmail', 'Automatisation'],
+            metrics: [
+              { value: '06h30', label: 'brief livré chaque matin' },
+              { value: '2', label: 'radars sourcés en parallèle' },
+              { value: '0', label: 'publication automatique : décision humaine' },
+            ],
+            detail: {
+              intro:
+                "L’automatisation sert la cadence. Elle ne choisit pas les sujets et ne publie rien : elle livre une matière première sourcée, chaque matin, à heure fixe.",
+              context:
+                'La veille arrivait de sources dispersées et dépendait entièrement du temps disponible pour la faire.',
+              action:
+                "J’ai monté un workflow n8n déclenché chaque matin à 06h30 : deux radars Perplexity en parallèle, fusion des sorties, mise en forme, envoi du brief par Gmail.",
+              blocks: [
+                {
+                  heading: 'Deux radars, deux périmètres',
+                  body: "Le premier suit les sorties produit IA et automatisation sur 48 heures. Le second cherche des descriptions de processus cassés en TPE, PME et agences, avec pour chacun le processus actuel étape par étape et les étapes automatisables. Les deux tournent en parallèle et sont fusionnés avant mise en forme.",
+                },
+                {
+                  heading: 'La règle de source',
+                  body: "Les prompts imposent la source primaire : page officielle de l’éditeur, changelog, dépôt, ou enquête avec méthodologie publiée. Les agrégateurs, newsletters tierces, fils X et vidéos sont explicitement refusés comme source finale. Une annonce qu’on ne peut pas rattacher à sa page officielle est écartée plutôt que reprise.",
+                },
+                {
+                  heading: 'Quand ça échoue',
+                  body: "Le code de mise en forme détecte une sortie vide ou trop courte et place une alerte en tête du brief plutôt que d’envoyer un mail d’apparence normale. Sur les exécutions réalisées à ce jour, toutes ont abouti à un envoi.",
+                },
+              ],
+              screenshots: [
+                {
+                  src: '/captures/ia-03-veille-mail.png',
+                  alt: 'Brief de veille ouvert dans la boîte mail, reçu à 06h31',
+                  framing:
+                    'captures/ia-03-veille-mail.png — brief ouvert, expéditeur, heure et premières entrées sourcées visibles.',
+                },
+                {
+                  src: '/captures/ia-03-veille-boite.png',
+                  alt: 'Les briefs de veille reçus jour après jour',
+                  framing:
+                    'captures/ia-03-veille-boite.png — liste des briefs « Veille COS du jour », dates lisibles.',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
   },
 
@@ -742,7 +743,7 @@ export const content: SiteContent = {
       {
         icon: 'scope',
         label: 'Périmètre',
-        value: 'Projets IA et automatisation, contenu, SEO et performance.',
+        value: 'Marketing digital : contenu, SEO, réseaux sociaux — et l’automatisation de ce qui se répète.',
       },
       {
         icon: 'repeat',
