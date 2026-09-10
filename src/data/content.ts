@@ -35,7 +35,7 @@ export const content: SiteContent = {
     statement:
       "Je pilote des projets marketing digital du cadrage à la mise en ligne, et j’automatise ce qui se répète.",
     portrait: {
-      src: '/portrait-priscile-ngandjui-donfack.jpg',
+      src: '/portrait-etalonne.jpg',
       alt: 'Portrait de Priscile Ngandjui Donfack',
     },
   },

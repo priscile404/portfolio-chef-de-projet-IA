@@ -49,6 +49,22 @@
 
   background-color: var(--color-ink);
   color: var(--color-chalk);
+
+  /* Trois couches, de la plus proche a la plus lointaine :
+     1. le vignettage, qui referme le cadre sur le contenu ;
+     2. la lampe principale, en haut a droite, chaude ;
+     3. une lueur de rappel au sol, a gauche.
+     Tout est en background-image : les couches restent derriere le contenu
+     sans pseudo-element ni z-index a arbitrer. */
+  background-image:
+    /* 1. la lampe principale, a mi-hauteur a droite : elle eclaire l'objet 3D.
+          Placee plus haut, elle tombait derriere le bandeau defilant, qui occupe
+          le premier tiers de la bande — la lumiere existait mais hors champ. */
+    radial-gradient(820px 580px at 78% 44%, rgb(255 140 70 / 0.58) 0%, rgb(255 122 47 / 0.10) 38%, transparent 68%),
+    /* 2. une lueur rasante a gauche, plus bas : elle donne la profondeur */
+    radial-gradient(700px 480px at 2% 88%, rgb(194 65 12 / 0.34) 0%, transparent 72%),
+    /* 4. le vignettage, tout au fond : il referme le cadre sans manger les sources */
+    radial-gradient(150% 92% at 50% 38%, transparent 30%, rgb(0 0 0 / 0.7) 100%);
 }
 
 /* Titrage : capitales lourdes, interlignage ecrase. */
@@ -284,6 +300,39 @@
   box-shadow: var(--ombre-carte-survol);
 }
 
+/* ------------------------------------------------------------------ *
+ * Grain
+ * Un bruit fractal genere en SVG, pose en surimpression sur toute la
+ * page et decale par pas de temps : c'est le scintillement de la
+ * pellicule. Sans lui, les aplats sombres restent des aplats.
+ * ------------------------------------------------------------------ */
+body::after {
+  content: '';
+  position: fixed;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.34;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 900ms steps(1) infinite;
+}
+
+@keyframes grain {
+  0% { transform: translate3d(0, 0, 0); }
+  12.5% { transform: translate3d(-6%, -4%, 0); }
+  25% { transform: translate3d(4%, -7%, 0); }
+  37.5% { transform: translate3d(-3%, 5%, 0); }
+  50% { transform: translate3d(7%, 3%, 0); }
+  62.5% { transform: translate3d(-5%, -6%, 0); }
+  75% { transform: translate3d(3%, 7%, 0); }
+  87.5% { transform: translate3d(-7%, 2%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -301,7 +350,8 @@
   }
 
   .tache,
-  .flotte {
+  .flotte,
+  body::after {
     animation: none;
   }
 

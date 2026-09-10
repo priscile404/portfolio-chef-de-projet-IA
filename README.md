@@ -126,6 +126,22 @@ src/
   derriere toute la page. Calque `fixed`, anime uniquement en `transform` — l'animation
   reste sur le compositeur, CLS a 0. Mesure : 45 % des pixels changent en 4 s, et 0 %
   sous `prefers-reduced-motion`.
+- **Eclairage des bandes sombres** : chaque bande porte trois sources en
+  `background-image` — une lampe chaude a mi-hauteur a droite, une lueur rasante
+  en bas a gauche, et un vignettage tout au fond. L'ordre compte : les sources
+  doivent passer DEVANT le vignettage, sinon il les eteint. La lampe est calee a
+  44 % de la hauteur et non en haut, parce que le premier tiers de la bande est
+  occupe par le bandeau defilant, qui masquait la lumiere. Mesure : 68 dans la
+  flaque, 12 dans le coin oppose.
+- **Grain de pellicule** : bruit fractal genere en SVG (`feTurbulence` desature),
+  pose en `body::after` et decale par pas de 900 ms. En `mix-blend-mode: overlay`,
+  ce qui laisse les noirs purs et ne mord que dans les valeurs intermediaires —
+  en fondu normal la moyenne grise du bruit remonte les noirs et tout devient sale.
+- **Portrait etalonne** (`public/portrait-etalonne.jpg`) : contraste, legere
+  desaturation, bascule chaude et chute de lumiere directionnelle. L'original
+  reste dans `public/portrait-priscile-ngandjui-donfack.jpg`, il suffit de
+  rechanger `identity.portrait.src` pour revenir en arriere. Une bichromie orange
+  avait ete essayee puis abandonnee : elle eclaircissait le teint.
 - Le bandeau défilant utilise des vignettes de 480 × 300 générées depuis
   `public/captures` vers `public/bandeau` : 20 fichiers, 217 Ko au total. En pleine
   résolution le LCP passait de 2,8 à 3,8 s.
@@ -146,6 +162,10 @@ valeur marquée `// EXEMPLE`.** Chaque nombre affiché est relevé sur une sourc
 | Automatisation & IA | Code de l'outil, canevas n8n en production, Gmail |
 | Projets personnels | Profil TikTok public @priscile_donfack |
 
+La capture TikTok faisait 1280 x 800 dont 92 % de noir — la grille de videos est
+vide, le compte etant en pause. Elle a ete recadree sur l'en-tete du profil, seule
+zone porteuse d'information. Le fond reste sombre : c'est l'interface de TikTok.
+
 ## Autres éléments à compléter
 
 - Vérifier le numéro de téléphone et l'URL LinkedIn dans `src/data/content.ts`
@@ -161,8 +181,9 @@ valeur marquée `// EXEMPLE`.** Chaque nombre affiché est relevé sur une sourc
 ## Mesures
 
 Lighthouse sur le build de production : performance 94, accessibilite 100, bonnes
-pratiques 100, SEO 100. Aucun point ouvert, LCP a 2,8 s, CLS a 0,001.
-Contraste conforme sur les sections claires comme sur les bandes sombres.
+pratiques 100, SEO 100. Aucun point ouvert, LCP a 2,9 s, CLS a 0,001, TBT a 60 ms.
+Contraste conforme sur les sections claires comme sur les bandes sombres : les
+dix-sept paires des deux palettes sont verifiees >= 4,5:1 avant d'etre posees.
 
 Aucun debordement horizontal a 375, 768 et 1440 px. Hierarchie de titres h1 vers h4
 sans saut.
