@@ -6,23 +6,52 @@
 @import '@fontsource/kanit/latin-900.css';
 
 @theme {
-  /* Theme clair. La page n'est pas blanche : elle est legerement grise, pour que
-     les cartes blanches se detachent au lieu de se fondre dedans.
-     Tous les rapports de contraste sont verifies >= 4.5:1. */
-  --color-ink: #f4f6f9;
+  /* Base claire, rechauffee facon papier. Un seul accent : un orange rouille
+     assez fonce pour rester lisible en texte sur blanc (4,7:1). L'orange vif des
+     references ne tient que sur fond sombre, il est repris dans `.sombre`. */
+  --color-ink: #f6f4f0;
   --color-panel: #ffffff;
-  --color-panel-2: #e9edf3;
-  --color-chalk: #14161c;
-  --color-mute: #5a6472;
-  --color-line: #d7dde6;
-  --color-accent: #a81a9b;
-  --color-accent-2: #6d3bbf;
+  --color-panel-2: #eceae4;
+  --color-chalk: #16130f;
+  --color-mute: #6b6259;
+  --color-line: #dedad2;
+  --color-accent: #c2410c;
+  --color-accent-2: #8a5a2b;
 
   --font-display: 'Kanit', system-ui, sans-serif;
   --font-sans: 'Kanit', system-ui, sans-serif;
 }
 
-/* Titrage : capitales lourdes, interlignage ecrase, degrade vertical. */
+/* Ombre de carte : variable, car sur fond sombre une ombre portee ne se voit pas.
+   Elle est neutralisee dans `.sombre`, ou c'est le filet qui detache la carte. */
+:root {
+  --ombre-carte: 0 1px 2px rgb(22 19 15 / 0.05), 0 8px 24px rgb(22 19 15 / 0.07);
+  --ombre-carte-survol: 0 2px 4px rgb(22 19 15 / 0.06), 0 20px 44px rgb(194 65 12 / 0.18);
+}
+
+/* ------------------------------------------------------------------ *
+ * Bande sombre
+ * Redefinit les memes variables de theme : toutes les classes du site
+ * (text-chalk, bg-panel, border-line...) pointent sur des `var()`, donc
+ * une section entiere bascule sans dupliquer une seule regle.
+ * ------------------------------------------------------------------ */
+.sombre {
+  --color-ink: #100e0c;
+  --color-panel: #1a1714;
+  --color-panel-2: #24201c;
+  --color-chalk: #f6f3ef;
+  --color-mute: #9d968d;
+  --color-line: #2e2a26;
+  --color-accent: #ff7a2f;
+  --color-accent-2: #d9a05b;
+  --ombre-carte: none;
+  --ombre-carte-survol: none;
+
+  background-color: var(--color-ink);
+  color: var(--color-chalk);
+}
+
+/* Titrage : capitales lourdes, interlignage ecrase. */
 @utility display {
   font-family: var(--font-display);
   font-weight: 900;
@@ -31,13 +60,10 @@
   letter-spacing: -0.02em;
 }
 
-/* Le degrade de titre. Repli en couleur pleine si background-clip manque. */
-@utility gradient-text {
-  color: #14161c;
-  background: linear-gradient(180deg, #4a5364 0%, #14161c 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Le mot mis en couleur au milieu d'un titre — le motif commun aux quatre
+   references. Ecrit `*mot*` dans le contenu, rendu par SectionHeader. */
+.accentue {
+  color: var(--color-accent);
 }
 
 @utility eyebrow {
@@ -48,23 +74,19 @@
   text-transform: uppercase;
 }
 
-/* Bouton principal : degrade diagonal, lueur interne, filet blanc en retrait. */
-@utility btn-glow {
-  background: linear-gradient(123deg, #18011f 7%, #b600a8 37%, #7621b0 72%, #be4c00 100%);
-  box-shadow:
-    0 4px 4px rgb(181 1 167 / 0.25),
-    4px 4px 12px #7721b1 inset;
-  outline: 2px solid #fff;
-  outline-offset: -3px;
+/* Bouton principal : pilule pleine, sans degrade ni lueur. Meme apparence sur
+   fond clair et sur fond sombre, comme dans les references. */
+@utility btn-orange {
+  background-color: #c2410c;
   color: #fff;
 }
 
 /* Halo diffus place derriere une section. */
 @utility aurora {
   background:
-    radial-gradient(40% 46% at 16% 20%, rgb(168 26 155 / 0.10) 0%, transparent 70%),
-    radial-gradient(36% 42% at 84% 16%, rgb(109 59 191 / 0.09) 0%, transparent 70%),
-    radial-gradient(48% 40% at 52% 98%, rgb(240 120 30 / 0.07) 0%, transparent 72%);
+    radial-gradient(40% 46% at 16% 20%, rgb(194 65 12 / 0.10) 0%, transparent 70%),
+    radial-gradient(36% 42% at 84% 16%, rgb(217 122 47 / 0.09) 0%, transparent 70%),
+    radial-gradient(48% 40% at 52% 98%, rgb(160 45 10 / 0.07) 0%, transparent 72%);
 }
 
 @layer base {
@@ -88,12 +110,12 @@
   }
 
   :focus-visible {
-    outline: 3px solid #8e1184;
+    outline: 3px solid var(--color-accent);
     outline-offset: 3px;
   }
 
   dialog::backdrop {
-    background-color: rgb(20 22 28 / 0.55);
+    background-color: rgb(16 14 12 / 0.6);
     backdrop-filter: blur(3px);
   }
 
@@ -129,7 +151,7 @@
   left: -10vw;
   width: 52vw;
   height: 52vw;
-  background: radial-gradient(circle, rgb(168 26 155 / 0.30), transparent 68%);
+  background: radial-gradient(circle, rgb(224 106 30 / 0.30), transparent 68%);
   animation: derive-1 28s ease-in-out infinite;
 }
 
@@ -138,7 +160,7 @@
   right: -16vw;
   width: 46vw;
   height: 46vw;
-  background: radial-gradient(circle, rgb(109 59 191 / 0.26), transparent 68%);
+  background: radial-gradient(circle, rgb(194 65 12 / 0.24), transparent 68%);
   animation: derive-2 34s ease-in-out infinite;
 }
 
@@ -147,7 +169,7 @@
   left: 28vw;
   width: 48vw;
   height: 48vw;
-  background: radial-gradient(circle, rgb(240 120 30 / 0.20), transparent 68%);
+  background: radial-gradient(circle, rgb(217 160 91 / 0.24), transparent 68%);
   animation: derive-3 40s ease-in-out infinite;
 }
 
@@ -181,7 +203,7 @@
   }
 }
 
-/* Les objets 3D flottent, chacun a son rythme (variante posee en style inline). */
+/* Les objets 3D flottent, chacun a son rythme (decalage pose en style inline). */
 .flotte {
   animation: flotte 14s ease-in-out infinite;
   will-change: transform;
@@ -211,7 +233,7 @@
   transform: none;
 }
 
-/* Carte inclinee au survol : la profondeur vient de la perspective, pas d'une ombre. */
+/* Carte inclinee au survol : la profondeur vient de la perspective. */
 .tilt {
   transform-style: preserve-3d;
   transition:
@@ -244,15 +266,13 @@
   animation: breathe 7s ease-in-out infinite;
 }
 
-/* Carte : surface blanche posee sur la page grise. Sur fond clair, l'elevation
-   se lit par l'ombre portee, pas par un degrade. */
+/* Carte. Sur fond clair l'elevation vient de l'ombre ; sur fond sombre l'ombre
+   est neutralisee et c'est le filet qui detache la carte. */
 .panneau {
   background: var(--color-panel);
   border: 1px solid var(--color-line);
   border-radius: 1.5rem;
-  box-shadow:
-    0 1px 2px rgb(20 22 28 / 0.04),
-    0 8px 24px rgb(20 22 28 / 0.06);
+  box-shadow: var(--ombre-carte);
   transition:
     border-color 250ms ease,
     box-shadow 400ms ease,
@@ -260,10 +280,8 @@
 }
 
 .tilt-scene:hover .panneau {
-  border-color: rgb(168 26 155 / 0.45);
-  box-shadow:
-    0 2px 4px rgb(20 22 28 / 0.05),
-    0 20px 44px rgb(168 26 155 / 0.16);
+  border-color: var(--color-accent);
+  box-shadow: var(--ombre-carte-survol);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -24,19 +24,28 @@ export default function App() {
 
       <main id="contenu" className="relative z-10">
         <Hero />
-        <Marquee />
-        <Approach />
+
+        <div className="sombre">
+          <Marquee />
+          <Approach />
+        </div>
+
         <Work />
         <Search />
-        <Contact />
+
+        <div className="sombre">
+          <Contact />
+        </div>
       </main>
 
-      <footer className="relative z-10 mx-auto flex w-full max-w-[1240px] flex-col gap-2 border-t border-line px-5 py-8 text-xs font-light text-mute sm:flex-row sm:items-center sm:justify-between md:px-8">
-        <p>{content.footer.copyright}</p>
-        <a href="#haut" className="inline-block py-2 transition-opacity duration-200 hover:opacity-70">
-          Retour en haut
-        </a>
-      </footer>
+      <div className="sombre relative z-10">
+        <footer className="mx-auto flex w-full max-w-[1240px] flex-col gap-2 border-t border-line px-5 py-8 text-xs font-light text-mute sm:flex-row sm:items-center sm:justify-between md:px-8">
+          <p>{content.footer.copyright}</p>
+          <a href="#haut" className="inline-block py-2 transition-opacity duration-200 hover:opacity-70">
+            Retour en haut
+          </a>
+        </footer>
+      </div>
     </>
   );
 }

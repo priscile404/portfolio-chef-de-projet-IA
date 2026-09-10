@@ -95,18 +95,33 @@ src/
 ## Choix techniques
 
 - React 19 + Vite + TypeScript + Tailwind v4.
-- Theme clair : page #F4F6F9, cartes blanches, texte #14161C, un seul accent magenta
-  #A81A9B. La page n'est volontairement pas blanche — sinon les cartes blanches s'y
-  fondent. Sur fond clair l'elevation se lit par l'ombre portee, pas par un degrade.
-  Tous les rapports de contraste sont verifies >= 4.5:1 avant d'etre poses.
+- Page claire et chaude, facon papier : #F6F4F0, cartes blanches, texte #16130F.
+  Un seul accent, un orange rouille #C2410C. L'orange vif des references (#E8590C)
+  ne passe qu'a 3,3:1 en texte sur clair : il est reserve aux bandes sombres, ou il
+  monte a 7,4:1. Les dix-sept rapports de contraste des deux fonds sont calcules
+  avant d'etre poses, le plus faible est a 4,7:1.
+- **Bandes sombres** (`.sombre` dans `index.css`) : la classe redefinit les memes
+  variables de theme (`--color-ink`, `--color-chalk`, `--color-accent`...). Comme
+  Tailwind v4 compile `text-chalk` en `color: var(--color-chalk)`, une section
+  entiere bascule en sombre sans dupliquer une seule regle ni ajouter une prop aux
+  composants. Deux bandes : bandeau + methode, puis contact + pied de page.
+  L'ombre de carte passe par la meme mecanique (`--ombre-carte`), car sur fond
+  sombre une ombre portee ne se voit pas : c'est le filet qui detache la carte.
+- **Titres bicolores** : un fragment entoure d'asterisques dans `content.ts`
+  (`Comment je *travaille*`) est rendu dans la couleur d'accent par `SectionHeader`.
+  Un asterisque non ferme est rendu tel quel, sans casser le titre.
 - Police Kanit auto-hebergee, **sous-ensemble latin uniquement** — charger tous les
   sous-ensembles (thai, vietnamien) coutait 60 Ko pour rien.
-- Trois objets 3D dans `public/objets/` (torus, sphere, spirale, 600 x 600, ~95 Ko
-  chacun), generes dans Higgsfield. Aucune librairie 3D. Les rendus arrivent composites
-  sur fond noir, sans canal alpha : l'opacite a ete reconstruite depuis la luminance
-  (`a = max(r,g,b)`, puis de-multiplication) pour obtenir une vraie transparence. Un
-  `mix-blend-mode: screen` aurait suffi sur fond sombre mais fait disparaitre les
-  objets sur fond clair.
+- Trois objets 3D dans `public/objets/` (torus, sphere, spirale, 600 x 600, ~90 Ko
+  chacun), generes dans Higgsfield. Aucune librairie 3D. Deux traitements successifs :
+  1. Les rendus arrivent composites sur fond noir, sans canal alpha. L'opacite est
+     reconstruite depuis la luminance (`a = max(r,g,b)`, puis de-multiplication). Un
+     `mix-blend-mode: screen` aurait suffi sur fond sombre mais fait disparaitre les
+     objets sur fond clair.
+  2. Passage au orange par **duotone** : la couleur d'origine est jetee, seule la
+     luminance est conservee et projetee sur une rampe orange, ce qui preserve les
+     ombres et les reflets. Une rotation de teinte avait ete essayee d'abord et
+     echoue — les objets portent plusieurs teintes, la sphere virait au vert.
 - Fond anime (`Fond.tsx`) : trois taches de couleur floutees qui derivent sur 28 a 40 s
   derriere toute la page. Calque `fixed`, anime uniquement en `transform` — l'animation
   reste sur le compositeur, CLS a 0. Mesure : 45 % des pixels changent en 4 s, et 0 %
@@ -146,8 +161,8 @@ valeur marquée `// EXEMPLE`.** Chaque nombre affiché est relevé sur une sourc
 ## Mesures
 
 Lighthouse sur le build de production : performance 94, accessibilite 100, bonnes
-pratiques 100, SEO 100. Aucun point ouvert, LCP a 2,8 s, CLS a 0, TBT a 80 ms.
-Contraste conforme sur toute la page.
+pratiques 100, SEO 100. Aucun point ouvert, LCP a 2,8 s, CLS a 0,001.
+Contraste conforme sur les sections claires comme sur les bandes sombres.
 
 Aucun debordement horizontal a 375, 768 et 1440 px. Hierarchie de titres h1 vers h4
 sans saut.

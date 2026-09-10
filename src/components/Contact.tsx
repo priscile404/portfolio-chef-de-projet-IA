@@ -37,7 +37,7 @@ export default function Contact() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a
             href={mailtoHref()}
-            className="btn-glow eyebrow inline-flex items-center justify-center gap-2 rounded-full px-10 py-4"
+            className="btn-orange eyebrow inline-flex items-center justify-center gap-2 rounded-full px-10 py-4"
           >
             <Icon name="mail" />
             {content.nav.cta}

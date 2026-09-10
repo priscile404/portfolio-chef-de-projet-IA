@@ -77,7 +77,7 @@ export default function Nav() {
 
         <a
           href={mailtoHref()}
-          className="btn-glow eyebrow rounded-full px-5 py-2.5 transition-transform duration-200 hover:scale-[1.03]"
+          className="btn-orange eyebrow rounded-full px-5 py-2.5 transition-transform duration-200 hover:scale-[1.03]"
         >
           {content.nav.cta}
         </a>

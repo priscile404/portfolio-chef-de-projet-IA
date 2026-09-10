@@ -29,7 +29,7 @@ export default function Hero() {
           <div className="order-2 lg:order-1">
             <div className="overflow-hidden">
               <Reveal delay={120}>
-                <h1 className="display gradient-text text-[15vw] sm:text-[13vw] lg:text-[9.5vw]">
+                <h1 className="display text-chalk text-[15vw] sm:text-[13vw] lg:text-[9.5vw]">
                   {identity.firstName}
                   <span className="block text-[6.4vw] sm:text-[5.4vw] lg:text-[3.9vw]">
                     {identity.lastName}
@@ -57,7 +57,7 @@ export default function Hero() {
               <div className="mt-8 flex flex-wrap items-center gap-3 md:mt-10">
                 <a
                   href={mailtoHref()}
-                  className="btn-glow eyebrow inline-flex items-center justify-center rounded-full px-9 py-3.5 transition-transform duration-200 hover:scale-[1.03] md:px-12 md:py-4"
+                  className="btn-orange eyebrow inline-flex items-center justify-center rounded-full px-9 py-3.5 transition-transform duration-200 hover:scale-[1.03] md:px-12 md:py-4"
                 >
                   {content.nav.cta}
                 </a>

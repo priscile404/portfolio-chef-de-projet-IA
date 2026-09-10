@@ -12,7 +12,7 @@ const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'public');
 
 const PAPER = '#f2f0eb';
 const INK = '#14130f';
-const ACCENT = '#a81a9b';
+const ACCENT = '#c2410c';
 const MUTED = '#5a554b';
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">

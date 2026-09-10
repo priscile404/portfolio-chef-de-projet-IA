@@ -70,7 +70,7 @@ export const content: SiteContent = {
   ],
 
   approach: {
-    title: 'Comment je travaille',
+    title: 'Comment je *travaille*',
     intro: 'J’aime apprendre, et j’apprends en construisant.',
     paragraphs: [
       {
@@ -684,7 +684,7 @@ export const content: SiteContent = {
   },
 
   personal: {
-    title: 'Projets personnels',
+    title: 'Projets *personnels*',
     lead: 'Construits sans budget, sans équipe, sans commande.',
     items: [
       {
@@ -737,7 +737,7 @@ export const content: SiteContent = {
   },
 
   search: {
-    title: 'Ce que je cherche',
+    title: 'Ce que je *cherche*',
     lead: 'Une équipe où l’outil compte autant que le contenu.',
     criteria: [
       {

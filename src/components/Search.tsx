@@ -9,7 +9,7 @@ export default function Search() {
   return (
     <section id="recherche" className="relative overflow-hidden">
       <div className="mx-auto w-full max-w-[1240px] px-5 py-16 md:px-8 md:py-24">
-        <SectionHeader title={search.title} lead={search.lead} inverted />
+        <SectionHeader title={search.title} lead={search.lead} />
 
         <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {search.criteria.map((item, i) => (
