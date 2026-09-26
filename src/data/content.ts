@@ -31,7 +31,7 @@ export const content: SiteContent = {
     firstName: 'Priscile',
     lastName: 'Ngandjui Donfack',
     monogram: 'PND',
-    eyebrow: 'Chef de projet marketing et automatisation',
+    eyebrow: 'Chargé de marketing digital et IA',
     statement:
       "Je pilote des projets marketing digital du cadrage à la mise en ligne, et j’automatise ce qui se répète.",
     portrait: {
@@ -58,14 +58,13 @@ export const content: SiteContent = {
 
   mail: {
     address: 'priscillengandjui@gmail.com',
-    subject: 'Alternance chef de projet marketing et automatisation — septembre 2026',
+    subject: 'Alternance chargé de marketing digital et IA — septembre 2026',
     body: "Bonjour Priscile,\n\nJe vous contacte au sujet d’une alternance à partir de septembre 2026.\n\n",
   },
 
   availability: [
     { icon: 'calendar', label: 'Rentrée', value: 'Septembre 2026' },
     { icon: 'clock', label: 'Durée', value: '12 mois' },
-    { icon: 'repeat', label: 'Rythme', value: '3 semaines en entreprise / 1 semaine hors entreprise' },
     { icon: 'pin', label: 'Zone', value: 'France entière' },
   ],
 

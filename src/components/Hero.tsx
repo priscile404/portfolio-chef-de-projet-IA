@@ -40,7 +40,7 @@ export default function Hero() {
 
             <Reveal delay={320}>
               <p
-                className="mt-6 max-w-[24ch] leading-snug font-light tracking-wide text-chalk uppercase md:mt-8"
+                className="mt-6 max-w-[34ch] leading-snug font-light tracking-wide text-balance text-chalk uppercase md:mt-8"
                 style={{ fontSize: 'clamp(0.8rem, 1.3vw, 1.4rem)' }}
               >
                 {identity.eyebrow}
@@ -104,11 +104,11 @@ export default function Hero() {
 
       {/* Bandeau de disponibilite. */}
       <div className="relative z-20 border-t border-line">
-        <dl className="mx-auto grid w-full max-w-[1500px] grid-cols-2 lg:grid-cols-4">
+        <dl className="mx-auto grid w-full max-w-[1500px] grid-cols-1 sm:grid-cols-3">
           {availability.map((item) => (
             <div
               key={item.label}
-              className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 border-b border-line px-6 py-4 last:border-b-0 md:px-10 lg:border-r lg:border-b-0 lg:last:border-r-0"
+              className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 border-b border-line px-6 py-4 last:border-b-0 md:px-10 sm:border-r sm:border-b-0 sm:last:border-r-0"
             >
               <Icon name={item.icon} className="row-span-2 mt-1 h-4 w-4 shrink-0 text-accent" />
               <dt className="eyebrow text-mute">{item.label}</dt>

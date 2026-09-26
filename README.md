@@ -41,10 +41,10 @@ elle montre des **réalisations classées par compétence**, puis les projets pe
 - Le récit long (contexte, action, détail technique, captures) est dans la vue détaillée,
   qui s'ouvre à la demande sur les quatre réalisations qui en ont une.
 
-L'ordre des domaines n'est pas neutre : il suit l'intitulé du poste, « chef de projet
-marketing et automatisation ». Le marketing digital passe devant — c'est le métier visé —
-et l'automatisation vient en second, comme ce qui distingue la candidature une fois le
-marketing établi. La page a d'abord été construite dans l'ordre inverse ; cet ordre-la
+L'ordre des domaines n'est pas neutre : il suit l'intitulé du poste, « chargé de
+marketing digital et IA ». Le marketing digital passe devant — c'est le métier visé —
+et l'IA vient en second, comme ce qui distingue la candidature une fois le marketing
+établi. La page a d'abord été construite dans l'ordre inverse ; cet ordre-la
 mettait l'IA au premier plan et noyait le marketing.
 
 ## Mise en ligne
@@ -59,10 +59,16 @@ change, corriger cette ligne suffit.
 **Structure de la page** : accueil, méthode, réalisations, projets personnels, ce que je
 cherche, contact.
 
-L'intitulé du poste vit à trois endroits qui doivent rester d'accord : `identity.eyebrow`
-et `mail.subject` dans `src/data/content.ts`, `VITE_POSTE` / `VITE_TITRE` / `VITE_PROMESSE`
-dans `.env.ia` (titre de l'onglet et aperçus de partage), et les trois lignes de texte de
+L'intitulé du poste vit à quatre endroits qui doivent rester d'accord : `identity.eyebrow`
+et `mail.subject` dans `src/data/content.ts` ; `VITE_POSTE` / `VITE_TITRE` /
+`VITE_DESCRIPTION` dans `.env.ia` (titre de l'onglet et aperçus de partage) ; la ligne
+`description` du JSON-LD dans `index.html` ; et les trois lignes de texte de
 `scripts/build-og-image.mjs` (image de partage, à regénérer avec `npm run og`).
+
+Le bandeau de disponibilité (`identity.availability`) porte trois repères : rentrée, durée,
+zone. Le rythme d'alternance en a été retiré. La grille tient une colonne par repère
+(`grid-cols-1 sm:grid-cols-3`) : si on en ajoute ou retire un, il faut corriger ce nombre,
+sinon une cellule reste vide.
 
 La section « Comment je travaille » (`Approach.tsx`) est la seule en texte suivi : une
 colonne de lecture, le reste de la largeur laissé libre. Elle rompt volontairement le
