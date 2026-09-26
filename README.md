@@ -42,8 +42,8 @@ elle montre des **réalisations classées par compétence**, puis les projets pe
   qui s'ouvre à la demande sur les quatre réalisations qui en ont une.
 
 L'ordre des domaines n'est pas neutre : il suit l'intitulé du poste, « chargé de
-marketing digital et IA ». Le marketing digital passe devant — c'est le métier visé —
-et l'IA vient en second, comme ce qui distingue la candidature une fois le marketing
+marketing digital et automatisation ». Le marketing digital passe devant — c'est le métier visé —
+et l'automatisation vient en second, comme ce qui distingue la candidature une fois le marketing
 établi. La page a d'abord été construite dans l'ordre inverse ; cet ordre-la
 mettait l'IA au premier plan et noyait le marketing.
 

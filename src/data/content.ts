@@ -31,7 +31,7 @@ export const content: SiteContent = {
     firstName: 'Priscile',
     lastName: 'Ngandjui Donfack',
     monogram: 'PND',
-    eyebrow: 'Chargé de marketing digital et IA',
+    eyebrow: 'Chargé de marketing digital et automatisation',
     statement:
       "Je pilote des projets marketing digital du cadrage à la mise en ligne, et j’automatise ce qui se répète.",
     portrait: {
@@ -58,7 +58,7 @@ export const content: SiteContent = {
 
   mail: {
     address: 'priscillengandjui@gmail.com',
-    subject: 'Alternance chargé de marketing digital et IA — septembre 2026',
+    subject: 'Alternance chargé de marketing digital et automatisation — septembre 2026',
     body: "Bonjour Priscile,\n\nJe vous contacte au sujet d’une alternance à partir de septembre 2026.\n\n",
   },
 

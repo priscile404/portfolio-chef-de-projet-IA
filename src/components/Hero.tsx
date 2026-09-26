@@ -40,7 +40,7 @@ export default function Hero() {
 
             <Reveal delay={320}>
               <p
-                className="mt-6 max-w-[34ch] leading-snug font-light tracking-wide text-balance text-chalk uppercase md:mt-8"
+                className="mt-6 max-w-[46ch] leading-snug font-light tracking-wide text-balance text-chalk uppercase md:mt-8"
                 style={{ fontSize: 'clamp(0.8rem, 1.3vw, 1.4rem)' }}
               >
                 {identity.eyebrow}
