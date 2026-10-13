@@ -10,9 +10,10 @@
     },
     {
       "name": "production",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "preview:ia"],
-      "port": 4310
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "preview", "--outDir", "dist-ia"],
+      "port": 4310,
+      "autoPort": true
     }
   ]
 }
