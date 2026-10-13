@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--", "--mode", "ia", "--port", "5173", "--strictPort"],
       "port": 5173
+    },
+    {
+      "name": "production",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "preview:ia"],
+      "port": 4310
     }
   ]
 }

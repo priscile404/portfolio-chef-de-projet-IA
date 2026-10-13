@@ -10,32 +10,33 @@ import sharp from 'sharp';
 
 const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'public');
 
-const PAPER = '#f2f0eb';
-const INK = '#14130f';
-const ACCENT = '#c2410c';
-const MUTED = '#5a554b';
+// Identite de la refonte : violet nuit, lumiere sable, creme.
+const NUIT = '#160A2E';
+const CREME = '#F6EEE6';
+const SABLE = '#E3D2B6';
+const VIOLET = '#5E2C8F';
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="${PAPER}"/>
-  <g stroke="#c9c4b6" stroke-width="1">
-    <line x1="300.5" y1="0" x2="300.5" y2="630"/>
-    <line x1="600.5" y1="0" x2="600.5" y2="630"/>
-    <line x1="900.5" y1="0" x2="900.5" y2="630"/>
+  <defs>
+    <radialGradient id="lumiere" cx="78%" cy="20%" r="70%">
+      <stop offset="0" stop-color="${SABLE}" stop-opacity=".22"/>
+      <stop offset="1" stop-color="${NUIT}" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="${NUIT}"/>
+  <rect width="1200" height="630" fill="url(#lumiere)"/>
+
+  <rect x="72" y="96" width="44" height="44" fill="${VIOLET}"/>
+  <g font-family="Arial Narrow, Arial, Helvetica, sans-serif" fill="${CREME}">
+    <text x="136" y="130" font-size="26" font-weight="bold" letter-spacing="4" fill="${SABLE}">ASSISTANTE MARKETING DIGITALE</text>
+    <text x="72" y="290" font-size="132" font-weight="bold" letter-spacing="-2">PRISCILE</text>
+    <text x="72" y="400" font-size="92" font-weight="bold" letter-spacing="-1">NGANDJUI DONFACK</text>
   </g>
-  <rect x="0" y="0" width="1200" height="14" fill="${ACCENT}"/>
 
-  <g font-family="Arial Narrow, Arial, Helvetica, sans-serif" fill="${INK}">
-    <text x="72" y="132" font-size="24" font-weight="bold" letter-spacing="6" fill="${ACCENT}">MARKETING DIGITAL · CONTENU · SEO · AUTOMATISATION</text>
-    <text x="72" y="268" font-size="118" font-weight="bold" letter-spacing="-1">PRISCILE</text>
-    <text x="72" y="380" font-size="118" font-weight="bold" letter-spacing="-1">NGANDJUI DONFACK</text>
-  </g>
+  <text x="72" y="490" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="600" fill="${CREME}">Je suis juste une personne qui aime apprendre et progresser.</text>
 
-  <rect x="72" y="418" width="120" height="8" fill="${ACCENT}"/>
-
-  <text x="72" y="482" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="600" fill="${INK}">Je pilote des projets marketing, et j’automatise ce qui se répète.</text>
-
-  <line x1="72" y1="524" x2="1128" y2="524" stroke="${INK}" stroke-width="2"/>
-  <text x="72" y="570" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="${MUTED}">Alternance · Septembre 2026 · 12 mois · France entière</text>
+  <line x1="72" y1="530" x2="1128" y2="530" stroke="${SABLE}" stroke-opacity=".4" stroke-width="2"/>
+  <text x="72" y="576" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="${SABLE}">Contenu · Référencement · Design · Automatisation</text>
 </svg>
 `;
 
