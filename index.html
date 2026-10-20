@@ -31,7 +31,7 @@
     <meta property="og:image:type" content="image/png" />
     <meta
       property="og:image:alt"
-      content="Priscile Ngandjui Donfack, assistante marketing digitale : contenu, référencement, design, automatisation."
+      content="Priscile Ngandjui Donfack, assistante marketing digitale et IA : contenu, référencement, design, automatisation."
     />
     <meta property="profile:first_name" content="Priscile" />
     <meta property="profile:last_name" content="Ngandjui Donfack" />
@@ -65,7 +65,7 @@
           "addressRegion": "Île-de-France",
           "addressCountry": "FR"
         },
-        "sameAs": ["https://www.linkedin.com/in/priscile-donfack"],
+        "sameAs": ["https://www.linkedin.com/in/priscile-donfack-88705b2b0/"],
         "knowsAbout": [
           "Marketing digital",
           "SEO on page et sémantique",
@@ -667,6 +667,10 @@
    * ------------------------------------------------------------------ */
   .barre-fixe { position: fixed; top: 14px; left: var(--marge); right: var(--marge); z-index: 30; display: flex; justify-content: flex-end; align-items: center; pointer-events: none; }
   .barre-fixe > * { pointer-events: auto; }
+  .barre-fixe { transition: opacity 300ms ease, transform 300ms ease; }
+  .barre-fixe.cache:not(:focus-within) { opacity: 0; transform: translateY(-16px); }
+  .barre-fixe.cache:not(:focus-within) > * { pointer-events: none; }
+  @media (prefers-reduced-motion: reduce) { .barre-fixe { transition: none; } }
   .menu-ligne { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 2px; padding: 4px; border-radius: 999px;
     background: rgba(22, 10, 46, .86); backdrop-filter: blur(8px); box-shadow: 0 8px 30px rgba(6, 2, 14, .25); }
   .menu-ligne a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px; color: var(--creme);
@@ -826,6 +830,46 @@
   .contact { overflow: hidden; isolation: isolate;
     background: radial-gradient(ellipse 55% 60% at 80% 100%, rgba(227, 210, 182, .16), transparent 70%), radial-gradient(ellipse 60% 50% at 50% 0%, rgba(227, 210, 182, .1), transparent 70%), #0e061f; }
   .contact-signature { position: absolute; right: -4vw; bottom: -6vw; z-index: -1; width: min(62vw, 760px); opacity: .07; pointer-events: none; }
+
+  /* ------------------------------------------------------------------ *
+   * Passe inspirations (magazine, affiche) : tout le site en nuit apres l'accueil,
+   * la photo porte la page, typo condensee geante, un seul accent (sable) sur le texte,
+   * le violet seulement en aplats. Accueil inchange.
+   * ------------------------------------------------------------------ */
+  #qui-je-suis, .apport-mag { background: var(--nuit); color: var(--creme); }
+  .mag .rubrique-nom { color: var(--creme); }
+  /* Qui suis-je : facon couverture « Who is She » — une colonne violette derriere elle, les lettres devant */
+  #qui-je-suis .geant .m-qui { color: var(--creme); }
+  #qui-je-suis .geant .m-suis, #qui-je-suis .geant .m-je { color: var(--sable); }
+  #qui-je-suis .mag-texte p, #qui-je-suis .mag-texte p + p { color: var(--creme); }
+  #qui-je-suis .affiche::before { content: ""; position: absolute; z-index: 0; top: calc(-1 * clamp(24px, 8svh, 96px)); bottom: calc(-1 * clamp(96px, 14svh, 160px));
+    left: calc(var(--x, 70%) - min(17vw, 300px)); width: min(34vw, 600px); background: var(--violet); }
+  #qui-je-suis .affiche::after { content: ""; position: absolute; z-index: 0; top: calc(-1 * clamp(24px, 8svh, 96px)); bottom: calc(-1 * clamp(96px, 14svh, 160px));
+    left: calc(var(--x, 70%) - min(17vw, 300px) - 28px); width: 10px; background: var(--sable); }
+  #qui-je-suis .decoupe { -webkit-mask-image: none; mask-image: none; }
+  @media (max-width: 767px) {
+    /* la colonne s'arrete au bas de la photo (meme marge negative que .decoupe) */
+    #qui-je-suis .affiche::before { left: 18vw; width: 64vw; top: auto; height: 60svh; bottom: calc(-1 * clamp(64px, 10svh, 120px)); }
+    #qui-je-suis .affiche::after { display: none; }
+  }
+
+  /* Competences : facon « SMILE » — quatre bandes de photo, un mot geant par bande */
+  .apport-mag .titre { color: var(--creme); }
+  .comp-aide { color: var(--sable); }
+  .panneaux { gap: 6px; }
+  .pan-vertical { font-size: clamp(30px, min(4vw, 6.2svh), 72px); line-height: .85; }
+  .f-sable .pan-vertical { color: var(--nuit); }
+
+  /* Realisations : mosaique serree d'images en format portrait, legende courte dessous, pas de pastille */
+  .pistes-titre { font-size: min(15vw, 26svh); line-height: .82; }
+  .piste-titre { font-size: clamp(40px, 5vw, 84px); border-bottom: 0; }
+  .vignettes { grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 6px; row-gap: 28px; }
+  .vignette-image { aspect-ratio: 4 / 5; }
+  .vignette-image::before { width: 100%; height: 6px; bottom: auto; }
+  .vignette-texte { padding: 12px 4px 0; }
+  .vignette-voir { padding: 0; min-height: 44px; border-radius: 0; background: none; color: var(--sable);
+    text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+  .vignette:hover .vignette-voir { background: none; color: var(--creme); }
 </style>
 </head>
 <body>
@@ -837,15 +881,14 @@
     <main class="socle">
       <div class="pose">
         <img class="portrait" src="/refonte/assise-4k.webp" alt="Priscile, assise de profil, le regard vers l'avant">
-        <p class="poste">Assistante marketing digitale</p>
+        <p class="poste">Assistante marketing digitale et IA</p>
         <div class="propos">
           <p>Je ne suis pas encore celle que je veux devenir.</p>
           <p>Mais j'aide déjà les entreprises en marketing digital&nbsp;: SEO, contenu, automatisation.</p>
         </div>
       </div>
       <h1 class="nom">
-        <span class="prenom">Priscile<span class="famille avant" aria-hidden="true">Ngandjui</span><span class="famille apres" aria-hidden="true">Donfack</span></span>
-        <span class="sr-only"> Ngandjui Donfack</span>
+        <span class="prenom">Priscile<span class="famille avant"> Ngandjui</span><span class="famille apres"> Donfack</span></span>
       </h1>
     </main>
   </div>
@@ -970,7 +1013,7 @@
       <div class="vignettes">
           <a class="vignette" href="#p-photo-video-chantier">
             <span class="vignette-image">
-              <img src="/captures/photos/02-salle-de-bain-marbre.jpg" alt="" loading="lazy">
+              <img src="/captures/photos/02-salle-de-bain-marbre.jpg" alt="Douche en marbre vert après rénovation, photographiée sur le chantier" loading="lazy">
               <span class="viseur" aria-hidden="true"></span>
               <span class="plan-n" aria-hidden="true">Plan 01</span>
               <span class="preuve"><b>11</b> vidéos publiées</span>
@@ -983,7 +1026,7 @@
           </a>
           <a class="vignette" href="#p-social-media-renovtaloc">
             <span class="vignette-image">
-              <img src="/captures/renovtaloc/post-01.jpg" alt="" loading="lazy">
+              <img src="/captures/renovtaloc/post-01.jpg" alt="Publication RénovtaLoc : salle de bain avant et après travaux" loading="lazy">
               <span class="viseur" aria-hidden="true"></span>
               <span class="plan-n" aria-hidden="true">Plan 02</span>
               <span class="preuve"><b>600+</b> abonnés gagnés</span>
@@ -1001,7 +1044,7 @@
       <div class="vignettes">
           <a class="vignette" href="#p-site-vitrine-poribal">
             <span class="vignette-image">
-              <img src="/captures/web-01-poribal.jpg" alt="" loading="lazy">
+              <img src="/captures/web-01-poribal.jpg" alt="Page d’accueil du site Poribal Group : « Votre projet immobilier clé en main »" loading="lazy">
               <span class="viseur" aria-hidden="true"></span>
               <span class="plan-n" aria-hidden="true">Plan 03</span>
               <span class="preuve"><b>7</b> pages livrées</span>
@@ -1014,7 +1057,7 @@
           </a>
           <a class="vignette" href="#p-seo-dupond">
             <span class="vignette-image">
-              <img src="/captures/web-02-dd-motscles.png" alt="" loading="lazy">
+              <img src="/captures/web-02-dd-motscles.png" alt="Tableau de recherche de mots-clés pour le site Dupond & Durand" loading="lazy">
               <span class="viseur" aria-hidden="true"></span>
               <span class="plan-n" aria-hidden="true">Plan 04</span>
               <span class="preuve"><b>10</b> pages réécrites</span>
@@ -1032,7 +1075,7 @@
       <div class="vignettes">
           <a class="vignette" href="#p-identite-poribal">
             <span class="vignette-image">
-              <img src="/captures/poribal/4-facons.jpg" alt="" loading="lazy">
+              <img src="/captures/poribal/4-facons.jpg" alt="Visuel Poribal Group : « Il n’y a pas qu’une seule façon d’investir en immobilier »" loading="lazy">
               <span class="viseur" aria-hidden="true"></span>
               <span class="plan-n" aria-hidden="true">Plan 05</span>
               <span class="preuve"><b>3</b> versions du logo</span>
@@ -1045,7 +1088,7 @@
           </a>
           <a class="vignette" href="#p-ligne-sportswear">
             <span class="vignette-image">
-              <img src="/captures/design/sport-couverture.jpg" alt="" loading="lazy">
+              <img src="/captures/design/sport-couverture.jpg" alt="Maillots de sport habillés de motifs, vus de face" loading="lazy">
               <span class="viseur" aria-hidden="true"></span>
               <span class="plan-n" aria-hidden="true">Plan 06</span>
               <span class="preuve"><b>8</b> pièces habillées</span>
@@ -1058,7 +1101,7 @@
           </a>
           <a class="vignette" href="#p-identite-meji">
             <span class="vignette-image">
-              <img src="/captures/design/meji-couverture.jpg" alt="" loading="lazy">
+              <img src="/captures/design/meji-couverture.jpg" alt="Logo et étiquette du jus de canne à sucre Meji Foods" loading="lazy">
               <span class="viseur" aria-hidden="true"></span>
               <span class="plan-n" aria-hidden="true">Plan 07</span>
               <span class="preuve"><b>2</b> versions d’étiquette</span>
@@ -1076,7 +1119,7 @@
       <div class="vignettes">
           <a class="vignette" href="#p-app-seo-geo">
             <span class="vignette-image">
-              <img src="/captures/ia-01-app.png" alt="" loading="lazy">
+              <img src="/captures/ia-01-app.png" alt="Écran de l’application de génération et d’audit d’articles SEO" loading="lazy">
               <span class="viseur" aria-hidden="true"></span>
               <span class="plan-n" aria-hidden="true">Plan 08</span>
               <span class="preuve"><b>17</b> articles générés</span>
@@ -1089,7 +1132,7 @@
           </a>
           <a class="vignette" href="#p-chaine-editoriale">
             <span class="vignette-image">
-              <img src="/captures/ia-02-canevas.png" alt="" loading="lazy">
+              <img src="/captures/ia-02-canevas.png" alt="Schéma n8n de la chaîne éditoriale semi-automatisée" loading="lazy">
               <span class="viseur" aria-hidden="true"></span>
               <span class="plan-n" aria-hidden="true">Plan 09</span>
               <span class="preuve"><b>5</b> canaux alimentés</span>
@@ -1102,7 +1145,7 @@
           </a>
           <a class="vignette" href="#p-veille-quotidienne">
             <span class="vignette-image">
-              <img src="/captures/ia-03-veille-canevas.png" alt="" loading="lazy">
+              <img src="/captures/ia-03-veille-canevas.png" alt="Schéma n8n de la veille quotidienne : deux radars fusionnés puis mis en forme" loading="lazy">
               <span class="viseur" aria-hidden="true"></span>
               <span class="plan-n" aria-hidden="true">Plan 10</span>
               <span class="preuve"><b>6 h 30</b> chaque matin</span>
@@ -1120,7 +1163,7 @@
       <div class="vignettes">
           <a class="vignette" href="#p-tiktok">
             <span class="vignette-image">
-              <img src="/captures/perso/tiktok-profil.jpg" alt="" loading="lazy">
+              <img src="/captures/perso/tiktok-profil.jpg" alt="Profil TikTok de Priscile, priscile_donfack" loading="lazy">
               <span class="viseur" aria-hidden="true"></span>
               <span class="plan-n" aria-hidden="true">Plan 11</span>
               <span class="preuve"><b>33 000</b> abonnés</span>
@@ -1151,15 +1194,15 @@
     <img class="contact-signature" src="/refonte/logo-pnd-creme.png" alt="" aria-hidden="true">
     <div class="rubrique"><span class="carre" aria-hidden="true">05</span><span class="rubrique-nom">Contact</span></div>
     <h2 class="sr-only" id="titre-contact">Contact</h2>
-    <a class="contact-mail condense" href="mailto:priscillengandjui@gmail.com?subject=Assistante%20marketing%20digitale%20%E2%80%94%20septembre%202026&amp;body=Bonjour%20Priscile%2C%0A%0AJe%20vous%20contacte%20au%20sujet%20d%E2%80%99une%20alternance%20%C3%A0%20partir%20de%20septembre%202026.%0A%0A">priscillengandjui@gmail.com</a>
+    <a class="contact-mail condense" href="mailto:priscillengandjui@gmail.com?subject=Assistante%20marketing%20digitale%20et%20IA%20%E2%80%94%20septembre%202026&amp;body=Bonjour%20Priscile%2C%0A%0AJe%20vous%20contacte%20au%20sujet%20d%E2%80%99une%20alternance%20%C3%A0%20partir%20de%20septembre%202026.%0A%0A">priscillengandjui@gmail.com</a>
     <div class="contact-actions">
-      <a class="contact-bouton plein" href="mailto:priscillengandjui@gmail.com?subject=Assistante%20marketing%20digitale%20%E2%80%94%20septembre%202026&amp;body=Bonjour%20Priscile%2C%0A%0AJe%20vous%20contacte%20au%20sujet%20d%E2%80%99une%20alternance%20%C3%A0%20partir%20de%20septembre%202026.%0A%0A">M'écrire</a>
+      <a class="contact-bouton plein" href="mailto:priscillengandjui@gmail.com?subject=Assistante%20marketing%20digitale%20et%20IA%20%E2%80%94%20septembre%202026&amp;body=Bonjour%20Priscile%2C%0A%0AJe%20vous%20contacte%20au%20sujet%20d%E2%80%99une%20alternance%20%C3%A0%20partir%20de%20septembre%202026.%0A%0A">M'écrire</a>
       <a class="contact-bouton" href="/cv-priscile-ngandjui-donfack.pdf" download>Télécharger le CV</a>
     </div>
     <p class="contact-lead">Le reste de l'histoire tient dans le CV.</p>
     <ul class="contact-canaux">
       <li><span>Téléphone</span><a href="tel:+33766167458">07 66 16 74 58</a></li>
-      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/priscile-donfack" target="_blank" rel="noopener">linkedin.com/in/priscile-donfack</a></li>
+      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/priscile-donfack-88705b2b0/" target="_blank" rel="noopener">linkedin.com/in/priscile-donfack-88705b2b0</a></li>
     </ul>
     <p class="contact-pied">© 2026 Priscile Ngandjui Donfack</p>
   </section>
@@ -1358,6 +1401,14 @@
       document.querySelector('.bouton-menu').addEventListener('click', () => menu.showModal());
       menu.querySelector('.menu-fermer').addEventListener('click', () => menu.close());
       menu.querySelectorAll('nav a').forEach((a) => a.addEventListener('click', () => menu.close()));
+      // Pendant le defilement, la barre s'efface ; elle revient des que la page s'arrete
+      const barre = document.querySelector('.barre-fixe');
+      let arret;
+      addEventListener('scroll', () => {
+        barre.classList.add('cache');
+        clearTimeout(arret);
+        arret = setTimeout(() => barre.classList.remove('cache'), 600);
+      }, { passive: true });
     })();
   </script>
 </body>

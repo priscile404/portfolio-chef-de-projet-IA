@@ -74,7 +74,7 @@ L'intitulé du poste vit à **six endroits qui doivent rester d'accord** :
 `VITE_DESCRIPTION` (`.env.ia`) ; la ligne `description` du JSON-LD (`index.html`) ; et les
 trois lignes de texte de `scripts/build-og-image.mjs` (à regénérer avec `npm run og`).
 
-Intitulé actuel : **« Chargé de marketing digital et automatisation »**.
+Intitulé actuel : **« Assistante marketing digitale et IA »** (2026-10-14).
 
 ## Structure actuelle — 7 blocs
 
@@ -117,8 +117,9 @@ information).
 
 ## Points ouverts
 
-- **Téléphone `07 66 16 74 58` et `linkedin.com/in/priscile-donfack`** : repris de la
-  maquette d'origine, **jamais vérifiés**. Ce sont les deux moyens de la contacter.
+- **LinkedIn vérifié le 2026-10-15** : `linkedin.com/in/priscile-donfack-88705b2b0`.
+- **Téléphone `07 66 16 74 58`** : repris de la maquette d'origine, **jamais vérifié**
+  (il figure aussi sur son CV du 2026-10-14).
 - **« Chargé » ou « Chargée »** : masculin retenu faute de confirmation, une lettre à
   changer.
 - Les deux cartes « Projet interne » (chaîne éditoriale, veille) : à elle ou à RénovtaLoc ?

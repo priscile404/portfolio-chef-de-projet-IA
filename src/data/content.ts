@@ -776,8 +776,8 @@ export const content: SiteContent = {
       {
         icon: 'linkedin',
         label: 'LinkedIn',
-        value: 'linkedin.com/in/priscile-donfack',
-        href: 'https://www.linkedin.com/in/priscile-donfack',
+        value: 'linkedin.com/in/priscile-donfack-88705b2b0',
+        href: 'https://www.linkedin.com/in/priscile-donfack-88705b2b0/',
         external: true,
       },
     ],

@@ -28,7 +28,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" v
 
   <rect x="72" y="96" width="44" height="44" fill="${VIOLET}"/>
   <g font-family="Arial Narrow, Arial, Helvetica, sans-serif" fill="${CREME}">
-    <text x="136" y="130" font-size="26" font-weight="bold" letter-spacing="4" fill="${SABLE}">ASSISTANTE MARKETING DIGITALE</text>
+    <text x="136" y="130" font-size="26" font-weight="bold" letter-spacing="4" fill="${SABLE}">ASSISTANTE MARKETING DIGITALE ET IA</text>
     <text x="72" y="290" font-size="132" font-weight="bold" letter-spacing="-2">PRISCILE</text>
     <text x="72" y="400" font-size="92" font-weight="bold" letter-spacing="-1">NGANDJUI DONFACK</text>
   </g>
