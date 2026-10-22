@@ -927,6 +927,46 @@
     .metiers { grid-template-columns: 1fr; }
     .projets { grid-template-columns: 1fr; gap: 40px; }
   }
+
+  /* ===== Qui suis-je : dans ma tete ===== */
+  .tete { position: relative; height: 460svh; background: #0a0418; }
+  .tete-plateau { position: sticky; top: 0; height: 100svh; overflow: hidden;
+    background: radial-gradient(ellipse 70% 70% at 50% 45%, #1d0e3b 0%, #0a0418 100%); }
+  .tete-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 30%; opacity: var(--video, 1); }
+
+  /* Le titre : en grand sur l'image d'ouverture, comme un titre de film */
+  .tete-titre { position: absolute; z-index: 3; left: var(--marge); bottom: 12svh; opacity: var(--titre, 1); transform: translateY(calc((1 - var(--titre, 1)) * -30px)); pointer-events: none; }
+  .tete-rubrique { display: block; margin-bottom: 18px; font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 17px; letter-spacing: .16em; text-transform: uppercase; color: var(--sable); }
+  .tete-plateau::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: var(--titre, 1); background: linear-gradient(0deg, rgba(10, 4, 24, .85) 0%, rgba(10, 4, 24, 0) 45%); }
+  .tete-grand { display: block; font-family: Inter, system-ui, sans-serif; font-weight: 800; font-size: clamp(48px, 7.6vw, 128px); line-height: .98; letter-spacing: -0.04em; color: var(--creme); text-shadow: 0 4px 40px rgba(10, 4, 24, .6); }
+  .tete-grand em { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: var(--sable); }
+
+  /* Les qualites : une seule a la fois, au centre, puis toutes ensemble au-dessus de la phrase */
+  .qualites { list-style: none; padding: 0; margin: 0; position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+  .qualite { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(calc(.94 + .1 * var(--t, 0)));
+    font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: clamp(64px, 12vw, 210px); line-height: 1; letter-spacing: -0.01em; white-space: nowrap;
+    color: var(--sable); opacity: var(--seule, 0); text-shadow: 0 0 60px rgba(227, 210, 182, .18); }
+  .tete.fin .qualites { inset: auto 0 auto 0; top: calc(50% - 22svh); display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; padding: 0 var(--marge); opacity: var(--fin, 0); }
+  .tete.fin .qualite { position: static; transform: none; opacity: 1; font-family: "Barlow Condensed", sans-serif; font-style: normal; font-weight: 600; font-size: clamp(15px, 1.5vw, 22px); letter-spacing: .16em; text-transform: uppercase; text-shadow: none; }
+  .tete.fin .qualite + .qualite::before { content: "·"; margin-right: 22px; color: rgba(227, 210, 182, .5); }
+
+  .tete-phrase { position: absolute; z-index: 3; left: 50%; top: 52%; width: min(16ch, 88vw); transform: translate(-50%, calc(-50% + (1 - var(--phrase, 0)) * 24px)); text-align: center;
+    font-family: Inter, system-ui, sans-serif; font-weight: 800; font-size: clamp(34px, 5.2vw, 84px); line-height: 1.02; letter-spacing: -0.035em; color: var(--creme); opacity: var(--phrase, 0); }
+  .tete-phrase em { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: var(--sable); }
+  @media (max-width: 767px) {
+    .tete { height: 420svh; }
+    .tete-video { object-position: 46% 30%; }
+    .tete-titre { bottom: 10svh; }
+    .tete.fin .qualites { top: calc(50% - 26svh); gap: 4px 12px; }
+    .tete.fin .qualite + .qualite::before { margin-right: 12px; }
+  }
+  /* Mouvement reduit : tout est pose, rien ne defile tout seul */
+  .tete.calme { height: auto; }
+  .tete.calme .tete-plateau { position: relative; height: auto; padding: 140px var(--marge) 120px; display: flex; flex-direction: column; gap: 40px; }
+  .tete.calme .tete-video { position: relative; height: 60svh; border-radius: 4px; }
+  .tete.calme .tete-titre, .tete.calme .qualites, .tete.calme .tete-phrase { position: static; transform: none; opacity: 1; width: auto; max-width: none; text-align: left; }
+  .tete.calme .qualites { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  .tete.calme .qualite { position: static; transform: none; opacity: 1; font-size: 40px; }
 </style>
 </head>
 <body>
@@ -974,13 +1014,20 @@
     <a class="bouton-cv" href="/cv-priscile-ngandjui-donfack.pdf" download>Télécharger le CV</a>
   </dialog>
 
-  <section class="mag" id="qui-je-suis" aria-labelledby="titre-qui">
-    <div class="affiche">
-      <h2 class="geant condense" id="titre-qui"><span class="m-qui">Qui</span> <span class="m-suis">suis</span><span class="trou" aria-hidden="true"></span><span class="m-je"><span class="tiret">-</span>je</span></h2>
-      <div class="mag-texte">
-        <p>Je suis juste une personne qui aime apprendre et progresser.</p>
-      </div>
-      <img class="decoupe" src="/refonte/rose-decoupe.png" width="480" height="640" alt="Priscile Ngandjui Donfack, les bras croisés, souriante, en sweat rose">
+  <section class="tete" id="qui-je-suis" aria-labelledby="titre-qui">
+    <div class="tete-plateau">
+      <video class="tete-video" muted playsinline preload="none" poster="/refonte/tete-depart.webp" data-src="/refonte/videos/entree.mp4" aria-hidden="true"></video>
+      <h2 class="tete-titre" id="titre-qui"><span class="tete-rubrique">Qui suis-je</span><span class="tete-grand">Entrez dans<br><em>ma tête</em>.</span></h2>
+      <ul class="qualites" aria-label="Mes qualités">
+        <li class="qualite" style="--i:0">Curieuse</li>
+        <li class="qualite" style="--i:1">Autonome</li>
+        <li class="qualite" style="--i:2">Persévérante</li>
+        <li class="qualite" style="--i:3">Honnête</li>
+        <li class="qualite" style="--i:4">Rigoureuse</li>
+        <li class="qualite" style="--i:5">Créative</li>
+        <li class="qualite" style="--i:6">Déterminée</li>
+      </ul>
+      <p class="tete-phrase">Je suis juste une personne qui aime apprendre et <em>progresser.</em></p>
     </div>
   </section>
 
@@ -1243,51 +1290,6 @@
     })();
   </script>
   <script>
-    // Qui suis-je : la ligne "QUI SUIS [trou] JE" remplit la largeur ; la photo se tient dans le trou, la tete au-dessus des lettres.
-    (() => {
-      const aff = document.querySelector('#qui-je-suis .affiche');
-      const geant = aff.querySelector('.geant'), trou = aff.querySelector('.trou'), photo = aff.querySelector('.decoupe');
-      const CORPS = 0.8;    // part de la largeur de l'image occupee par sa silhouette
-      const RATIO = 0.75;   // largeur / hauteur de l'image
-      const TROU = 2.1;     // largeur du trou, en hauteurs de lettre
-      const caler = () => {
-        if (matchMedia('(max-width: 767px)').matches) {
-          ['--x', '--haut', '--h'].forEach((v) => aff.style.removeProperty(v));
-          ['--taille', '--trou'].forEach((v) => geant.style.removeProperty(v));
-          aff.style.minHeight = '';
-          return;
-        }
-        geant.style.setProperty('--taille', '100px'); geant.style.setProperty('--trou', '0px');
-        // mesure sans l'animation d'entree (les mots peuvent etre decales hors champ a ce moment)
-        geant.classList.add('mesure');
-        const r = document.createRange(); r.selectNodeContents(geant);
-        const mots = r.getBoundingClientRect().width;
-        geant.classList.remove('mesure');
-        // Taille : la ligne remplit la largeur, mais la photo (3,5 fois la taille) ne depasse pas 82 % de l'ecran
-        let taille = aff.clientWidth / (mots / 100 + TROU);
-        const hauteur = Math.min((taille * TROU) / (RATIO * CORPS), innerHeight * 0.82);
-        taille = Math.min(taille, hauteur * RATIO * CORPS / TROU);
-        // Sur un ecran large, l'espace en trop va au trou : QUI SUIS a gauche, JE a droite, elle au milieu
-        const trouL = Math.max(taille * TROU, aff.clientWidth - (mots / 100) * taille - 2);
-        geant.style.setProperty('--taille', taille.toFixed(1) + 'px');
-        geant.style.setProperty('--trou', trouL.toFixed(1) + 'px');
-        const bas = parseFloat(getComputedStyle(aff.closest('.mag')).paddingBottom);
-        // la section prend la hauteur de la photo : la tete reste dans le cadre
-        aff.style.minHeight = '0px';
-        const GOUTTE = 0; // espace des coulures sous la photo
-        aff.style.minHeight = Math.max(0, hauteur - bas + GOUTTE) + 'px';
-        aff.style.setProperty('--x', (geant.offsetLeft + trou.offsetLeft + trou.offsetWidth / 2) + 'px');
-        aff.style.setProperty('--haut', (aff.offsetHeight + bas - hauteur - GOUTTE) + 'px');
-        aff.style.setProperty('--goutte', GOUTTE + 'px');
-        aff.style.setProperty('--h', hauteur + 'px');
-      };
-      addEventListener('resize', caler);
-      addEventListener('load', caler);
-      document.fonts && document.fonts.ready.then(caler);
-      caler();
-    })();
-  </script>
-  <script>
     // Menu : la partie a l'ecran est surlignee ; le bouton "Menu" ouvre le menu plein ecran (Echap ou un lien le ferme).
     (() => {
       const liens = [...document.querySelectorAll('.menu-ligne a')];
@@ -1308,6 +1310,47 @@
         clearTimeout(arret);
         arret = setTimeout(() => barre.classList.remove('cache'), 600);
       }, { passive: true });
+    })();
+  </script>
+  <script>
+    // Dans ma tete : un seul fil, le defilement.
+    // 0 → 0,12 le titre ; 0 → 0,34 la camera entre ; 0,36 → 0,82 une qualite apres l'autre ; 0,84 → 1 toutes, puis la phrase.
+    (() => {
+      const scene = document.getElementById('qui-je-suis');
+      const video = scene.querySelector('.tete-video');
+      const qual = [...scene.querySelectorAll('.qualite')];
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { scene.classList.add('calme'); return; }
+      const borne = (v) => Math.min(1, Math.max(0, v));
+      // la video ne se charge qu'a l'approche de la scene
+      new IntersectionObserver((es, io) => { if (es[0].isIntersecting) { video.src = video.dataset.src; video.load(); io.disconnect(); } }, { rootMargin: '100% 0px' }).observe(scene);
+      let cible = 0, temps = 0, image = 0;
+      const maj = () => {
+        image = 0;
+        const r = scene.getBoundingClientRect();
+        const p = borne(-r.top / (scene.offsetHeight - innerHeight));
+        scene.style.setProperty('--titre', (1 - borne((p - .07) / .07)).toFixed(3));
+        scene.style.setProperty('--video', (1 - borne((p - .33) / .05)).toFixed(3));
+        if (video.duration) cible = borne(p / .34) * (video.duration - .05);
+        const fin = borne((p - .84) / .06);
+        scene.classList.toggle('fin', fin > 0);
+        const pas = .46 / qual.length;
+        qual.forEach((q, i) => {
+          const t = (p - .36 - i * pas) / pas;                 // 0 → 1 pendant le temps de cette qualite
+          const seule = borne(t / .25) * (1 - borne((t - .75) / .25));
+          q.style.setProperty('--seule', seule.toFixed(3));
+          q.style.setProperty('--t', borne(t).toFixed(3));
+        });
+        scene.style.setProperty('--fin', fin.toFixed(3));
+        scene.style.setProperty('--phrase', borne((p - .9) / .06).toFixed(3));
+      };
+      // la video suit le defilement en douceur, sans saccade
+      const suivre = () => {
+        if (video.readyState >= 2 && Math.abs(cible - temps) > .01) { temps += (cible - temps) * .25; video.currentTime = temps; }
+        requestAnimationFrame(suivre);
+      };
+      addEventListener('scroll', () => { if (!image) image = requestAnimationFrame(maj); }, { passive: true });
+      addEventListener('resize', maj);
+      maj(); suivre();
     })();
   </script>
 </body>
